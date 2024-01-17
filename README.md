@@ -7,4 +7,5 @@ Tyler Lindsay<br>
 Gabriel Marx
 
 #### Faculty Advisors
+Dr. Truong Tran<br>
 Dr. Sayed Reza

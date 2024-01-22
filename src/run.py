@@ -3,6 +3,8 @@ from time import sleep
 
 in1 = 20
 in2 = 21
+in3 = 16
+in4 = 12
 en = 25
 temp1=1
 
@@ -47,6 +49,8 @@ while(1):
         print("forward")
         GPIO.output(in1,GPIO.HIGH)
         GPIO.output(in2,GPIO.LOW)
+        GPIO.output(in3,GPIO.HIGH)
+        GPIO.output(in4,GPIO.LOW)
         temp1=1
         x='z'
 
@@ -54,8 +58,22 @@ while(1):
         print("backward")
         GPIO.output(in1,GPIO.LOW)
         GPIO.output(in2,GPIO.HIGH)
+        GPIO.output(in3,GPIO.LOW)
+        GPIO.output(in4,GPIO.HIGH)
         temp1=0
         x='z'
+
+    elif x=='right':
+        GPIO.output(in1,GPIO.HIGH)
+        GPIO.output(in2,GPIO.LOW)
+        GPIO.output(in3,GPIO.LOW)
+        GPIO.output(in4,GPIO.HIGH)
+
+    elif x=='left':
+        GPIO.output(in1,GPIO.LOW)
+        GPIO.output(in2,GPIO.HIGH)
+        GPIO.output(in3,GPIO.HIGH)
+        GPIO.output(in4,GPIO.LOW)
 
     elif x=='l':
         print("low")

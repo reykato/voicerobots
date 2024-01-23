@@ -4,7 +4,7 @@ from flask_socketio import SocketIO
 from motors import Motors
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'pacifistbd'
+# app.config['SECRET_KEY'] = 'pacifistbd'
 socketio = SocketIO(app)
 m = Motors(20, 21, 16, 12, 1, 7)
 
@@ -14,7 +14,7 @@ def control():
 
 @socketio.on('json')
 def handle_message(json):
-    print('received json: ' + str(json))
+    # print('received json: ' + str(json))
     handle_data(json['x'], json['y'])
 
 def handle_data(x, y):

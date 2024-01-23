@@ -38,9 +38,7 @@ body
 	margin: 0px;
 	padding: 0px;
 	font-family: monospace;
-}
-html {
-  color: #000000
+  background-color: black;
 }
 .row
 {
@@ -59,6 +57,10 @@ html {
   width: 70%;
   min-width: 300px;
 }
+#joyDiv {
+  color: white;
+}
+
 		</style>
 		<script src="/static/joy.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
@@ -66,7 +68,7 @@ html {
 	<body>
 		<!-- Example of FIXED or ABSOLUTE position -->
 		<div id="joyDiv" style="width:200px;height:200px;margin:50px;position:fixed;top:30px;left:100px;"></div>
-		<div style="position:fixed;top:325px;left:150px;">
+		<div style="position:fixed;top:325px;left:150px;color:white;">
 			Position X:<input id="PosX" type="text" /><br/>
 			Position Y:<input id="PosY" type="text" /><br/>
 			Direction:<input id="Direction" type="text" /><br/>

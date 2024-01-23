@@ -10,7 +10,10 @@ def control():
     return render_template('index.html')
 
 def handle_data(x, y):
-    m.backward_for_ms(100)
+    if y > 0:
+        m.forward_for_ms(200)
+    else:
+        m.backward_for_ms(200)
 
 @app.route('/control/data', methods=["POST"])
 def control_data():

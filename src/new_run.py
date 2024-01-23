@@ -14,6 +14,7 @@ def control_data():
     req = request.get_json()
 
     print(req)
+    return "Thx brah"
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

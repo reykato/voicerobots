@@ -13,7 +13,7 @@ def control():
 def control_data():
     req = request.get_json()
 
-    print(req)
+    print(f"x is {req['x']} and y is {req['y']}")
     return "Thx brah"
 
 if __name__ == '__main__':

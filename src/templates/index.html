@@ -124,9 +124,9 @@ body
                     credentials: "omit",
                     body: JSON.stringify(entry),
                     cache: "no-cache"
-                    headers: new Headers({
+                    headers: {
                         "content-type": "application/json"
-                    })
+                    }
                 })
             }
 

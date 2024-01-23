@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO          
 from time import sleep
+import keyboard
 
 in1 = 20
 in2 = 21
@@ -24,7 +25,11 @@ print("The default speed & direction of motor is LOW & Forward.....")
 print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
 print("\n")    
 
-while(1):
+while(True):
+
+    if keyboard.is_pressed("a"):
+        print("You pressed 'a'.")
+        break
 
     x=input()
     

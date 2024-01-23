@@ -25,11 +25,9 @@
 -->
 <html>
 	<head>
-		<title>Joy</title>
+		<title>RPi Joystick</title>
 		<meta charset="utf-8">
-		<meta name="description" content="Example page of use pure Javascript JoyStick">
-		<meta name="author" content="Roberto D'Amico">
-		<link rel="shortcut icon" type="image/png" href="http://bobboteck.github.io/img/roberto-damico-bobboteck.png">
+		<meta name="description" content="Joystick to control robot through websockets">
 		<style>
 *
 {
@@ -68,62 +66,48 @@ body
 {
 	border: 1px solid #FF0000;
 }
-#joystick2
-{
-	border: 1px solid #0000FF;
-}
 		</style>
 		<script src="/static/joy.min.js"></script>
 	</head>
 	<body>
 		<!-- Example of FIXED or ABSOLUTE position -->
-		<div id="joy3Div" style="width:200px;height:200px;margin:50px;position:fixed;top:30px;left:100px;"></div>
+		<div id="joyDiv" style="width:200px;height:200px;margin:50px;position:fixed;top:30px;left:100px;"></div>
 		<div style="position:fixed;top:325px;left:150px;">
-			Posizione X:<input id="joy3PosizioneX" type="text" /><br />
-			Posizione Y:<input id="joy3PosizioneY" type="text" /><br />
-			Direzione:<input id="joy3Direzione" type="text" /><br />
-			X :<input id="joy3X" type="text" /></br>
-			Y :<input id="joy3Y" type="text" />
+			Position X:<input id="PosX" type="text" /><br/>
+			Position Y:<input id="PosY" type="text" /><br/>
+			Direction:<input id="Direction" type="text" /><br/>
+			Relative X :<input id="X" type="text" /></br>
+			Relative Y :<input id="Y" type="text" />
 		</div>
 		<!-- Example of two JoyStick integrated in the page structure -->
 		<script type="text/javascript">
-            // Create JoyStick object into the DIV 'joy1Div'
-            //var Joy1 = new JoyStick('joy1Div');
-
-            /*
-            setInterval(function(){ joy1IinputPosX.value=Joy1.GetPosX(); }, 50);
-            setInterval(function(){ joy1InputPosY.value=Joy1.GetPosY(); }, 50);
-            setInterval(function(){ joy1Direzione.value=Joy1.GetDir(); }, 50);
-            setInterval(function(){ joy1X.value=Joy1.GetX(); }, 50);
-            setInterval(function(){ joy1Y.value=Joy1.GetY(); }, 50);
-            */
             var socket = io();
             socket.on('connect', function() {
                 socket.emit('my event', {data: 'I\'m connected!'});
             });
 
-            var joy3Param = { "title": "joystick3" };
-            var Joy3 = new JoyStick('joy3Div', joy3Param);
+            var joyParam = { "title": "joystick" };
+            var Joy = new JoyStick('joyDiv', joyParam);
 
-            var joy3IinputPosX = document.getElementById("joy3PosizioneX");
-            var joy3InputPosY = document.getElementById("joy3PosizioneY");
-            var joy3Direzione = document.getElementById("joy3Direzione");
-            var joy3X = document.getElementById("joy3X");
-            var joy3Y = document.getElementById("joy3Y");
+            var input_pos_x = document.getElementById("PosX");
+            var input_pos_y = document.getElementById("PosY");
+            var direction = document.getElementById("Direction");
+            var X = document.getElementById("X");
+            var Y = document.getElementById("Y");
 
-            setInterval(function(){ joy3IinputPosX.value=Joy3.GetPosX(); }, 50);
-            setInterval(function(){ joy3InputPosY.value=Joy3.GetPosY(); }, 50);
-            setInterval(function(){ joy3Direzione.value=Joy3.GetDir(); }, 50);
-            setInterval(function(){ joy3X.value=Joy3.GetX(); }, 50);
-            setInterval(function(){ joy3Y.value=Joy3.GetY(); }, 50);
+            setInterval(function(){ input_pos_x.value=Joy.GetPosX(); }, 50);
+            setInterval(function(){ input_pos_y.value=Joy.GetPosY(); }, 50);
+            setInterval(function(){ direction.value=Joy.GetDir(); }, 50);
+            setInterval(function(){ X.value=Joy.GetX(); }, 50);
+            setInterval(function(){ Y.value=Joy.GetY(); }, 50);
 
             function send_joystick_data() {
                 var entry = {
-                    x: Joy3.GetX(),
-                    y: Joy3.GetY()
+                    x: Joy.GetX(),
+                    y: Joy.GetY()
                 }
 
-                fetch(`${window.origin}/control/data`, {
+                fetch(`${window.origin}/joystick/data`, {
                     method: "POST",
                     credentials: "omit",
                     body: JSON.stringify(entry),
@@ -136,8 +120,8 @@ body
 
             function send_joystick_data_websocket() {
               var entry = {
-                    x: Joy3.GetX(),
-                    y: Joy3.GetY()
+                    x: Joy.GetX(),
+                    y: Joy.GetY()
               }
 
               socket.emit('json', entry);

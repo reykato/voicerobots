@@ -10,7 +10,7 @@ m = Motors(20, 21, 16, 12, 1, 7)
 
 @app.route('/control')
 def control():
-    return render_template('index.html')
+    return render_template('joystick.html')
 
 @socketio.on('json')
 def handle_message(json):
@@ -23,7 +23,7 @@ def handle_data(x, y):
 
     m.set_duty_cycle(x, y)
 
-# @app.route('/control/data', methods=["POST"])
+# @app.route('/joystick/data', methods=["POST"])
 # def control_data():
 #     req = request.get_json()
 #     handle_data(req['x'], req['y'])

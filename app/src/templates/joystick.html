@@ -39,6 +39,9 @@ body
 	padding: 0px;
 	font-family: monospace;
 }
+html {
+  color: #000000
+}
 .row
 {
 	display: inline-flex;
@@ -55,16 +58,6 @@ body
   float: left;
   width: 70%;
   min-width: 300px;
-}
-#joy2Div
-{
-	width:200px;
-	height:200px;
-	margin:50px
-}
-#joystick
-{
-	border: 1px solid #FF0000;
 }
 		</style>
 		<script src="/static/joy.min.js"></script>
@@ -87,7 +80,12 @@ body
                 socket.emit('my event', {data: 'I\'m connected!'});
             });
 
-            var joyParam = { "title": "joystick" };
+            var joyParam = { 
+              "title": "joystick",
+              internalFillColor: '#00AA00',
+              internalStrokeColor: '#003300'
+              externalStrokeColor: '#000000'
+            };
             var Joy = new JoyStick('joyDiv', joyParam);
 
             var input_pos_x = document.getElementById("PosX");

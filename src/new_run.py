@@ -10,7 +10,7 @@ def control():
     return render_template('index.html')
 
 def handle_data(x, y):
-    if y > 0:
+    if int(y) > 0:
         m.forward_for_ms(200)
     else:
         m.backward_for_ms(200)

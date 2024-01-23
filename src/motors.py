@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO          
 from time import time
 
-def Motors():
+class Motors:
     def __init__(self, in1, in2, in3, in4):
         self.in1 = in1
         self.in2 = in2

@@ -75,8 +75,9 @@ class Motors:
             y (float): y-axis value (speed)'''
         
         # calculate the duty cycle for each motor, also in interval [-1, 1]
-        l_duty_cycle = max(min(1.0, y + x), -1.0)
-        r_duty_cycle = max(min(1.0, y - x), -1.0)
+        l_duty_cycle = max(min(1.0, y - x), -1.0)
+        r_duty_cycle = max(min(1.0, y + x), -1.0)
+        
 
 
         # set the direction of the motors

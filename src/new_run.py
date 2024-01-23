@@ -10,8 +10,8 @@ def control():
     return render_template('index.html')
 
 def handle_data(x, y):
-    m.forward_for_ms(100)
-    
+    m.backward_for_ms(100)
+
 @app.route('/control/data', methods=["POST"])
 def control_data():
     req = request.get_json()

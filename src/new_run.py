@@ -16,10 +16,10 @@ def control_data():
 
     print(f"x is {req['x']} and y is {req['y']}")
 
-    m = Motors(20, 21, 16, 12)
     m.forward_for_ms(100)
     
     return "Thx brah"
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
+    m = Motors(20, 21, 16, 12)

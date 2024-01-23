@@ -123,10 +123,10 @@ body
                     method: "POST",
                     credentials: "omit",
                     body: JSON.stringify(entry),
-                    cache: "no-cache"
-                    headers: {
+                    cache: "no-cache",
+                    headers: new Headers({
                         "content-type": "application/json"
-                    }
+                    })
                 })
             }
 

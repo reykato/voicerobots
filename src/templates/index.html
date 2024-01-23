@@ -97,6 +97,10 @@ body
             setInterval(function(){ joy1X.value=Joy1.GetX(); }, 50);
             setInterval(function(){ joy1Y.value=Joy1.GetY(); }, 50);
             */
+            var socket = io();
+            socket.on('connect', function() {
+                socket.emit('my event', {data: 'I\'m connected!'});
+            });
 
             var joy3Param = { "title": "joystick3" };
             var Joy3 = new JoyStick('joy3Div', joy3Param);
@@ -130,7 +134,16 @@ body
                 })
             }
 
-            setInterval(send_joystick_data, 100);
+            function send_joystick_data_websocket() {
+              var entry = {
+                    x: Joy3.GetX(),
+                    y: Joy3.GetY()
+              }
+
+              socket.emit('json', entry);
+            }
+
+            setInterval(send_joystick_data_websocket, 100);
 		</script>
 	</body>
 </html>

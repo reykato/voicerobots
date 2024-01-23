@@ -81,20 +81,20 @@ class Motors:
 
 
         # set the direction of the motors
-        if l_duty_cycle < 0:                # backward
+        if r_duty_cycle < 0:                # backward
             GPIO.output(self.left_1,GPIO.LOW)
             GPIO.output(self.left_2,GPIO.HIGH)
-        elif l_duty_cycle > 0:              # forward
+        elif r_duty_cycle > 0:              # forward
             GPIO.output(self.left_1,GPIO.HIGH)
             GPIO.output(self.left_2,GPIO.LOW)
         else:                               # stop
             GPIO.output(self.left_1,GPIO.LOW)
             GPIO.output(self.left_2,GPIO.LOW)
         
-        if r_duty_cycle < 0:                # backward
+        if l_duty_cycle < 0:                # backward
             GPIO.output(self.right_1,GPIO.HIGH)
             GPIO.output(self.right_2,GPIO.LOW)
-        elif r_duty_cycle > 0:              # forward
+        elif l_duty_cycle > 0:              # forward
             GPIO.output(self.right_1,GPIO.LOW)
             GPIO.output(self.right_2,GPIO.HIGH)
         else:                               # stop

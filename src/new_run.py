@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template, request, redirect, jsonify, make_response
+from motors import Motors
 
 app = Flask(__name__)
 
@@ -14,6 +15,10 @@ def control_data():
     req = request.get_json()
 
     print(f"x is {req['x']} and y is {req['y']}")
+
+    m = Motors(20, 21, 16, 12)
+    m.forward_for_ms(100)
+    
     return "Thx brah"
 
 if __name__ == '__main__':

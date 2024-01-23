@@ -87,31 +87,32 @@ body
 		</div>
 		<!-- Example of two JoyStick integrated in the page structure -->
 		<script type="text/javascript">
-// Create JoyStick object into the DIV 'joy1Div'
-//var Joy1 = new JoyStick('joy1Div');
+            // Create JoyStick object into the DIV 'joy1Div'
+            //var Joy1 = new JoyStick('joy1Div');
 
-/*
-setInterval(function(){ joy1IinputPosX.value=Joy1.GetPosX(); }, 50);
-setInterval(function(){ joy1InputPosY.value=Joy1.GetPosY(); }, 50);
-setInterval(function(){ joy1Direzione.value=Joy1.GetDir(); }, 50);
-setInterval(function(){ joy1X.value=Joy1.GetX(); }, 50);
-setInterval(function(){ joy1Y.value=Joy1.GetY(); }, 50);
-*/
+            /*
+            setInterval(function(){ joy1IinputPosX.value=Joy1.GetPosX(); }, 50);
+            setInterval(function(){ joy1InputPosY.value=Joy1.GetPosY(); }, 50);
+            setInterval(function(){ joy1Direzione.value=Joy1.GetDir(); }, 50);
+            setInterval(function(){ joy1X.value=Joy1.GetX(); }, 50);
+            setInterval(function(){ joy1Y.value=Joy1.GetY(); }, 50);
+            */
 
-var joy3Param = { "title": "joystick3" };
-var Joy3 = new JoyStick('joy3Div', joy3Param);
+            var joy3Param = { "title": "joystick3" };
+            var Joy3 = new JoyStick('joy3Div', joy3Param);
 
-var joy3IinputPosX = document.getElementById("joy3PosizioneX");
-var joy3InputPosY = document.getElementById("joy3PosizioneY");
-var joy3Direzione = document.getElementById("joy3Direzione");
-var joy3X = document.getElementById("joy3X");
-var joy3Y = document.getElementById("joy3Y");
+            var joy3IinputPosX = document.getElementById("joy3PosizioneX");
+            var joy3InputPosY = document.getElementById("joy3PosizioneY");
+            var joy3Direzione = document.getElementById("joy3Direzione");
+            var joy3X = document.getElementById("joy3X");
+            var joy3Y = document.getElementById("joy3Y");
 
-setInterval(function(){ joy3IinputPosX.value=Joy3.GetPosX(); }, 50);
-setInterval(function(){ joy3InputPosY.value=Joy3.GetPosY(); }, 50);
-setInterval(function(){ joy3Direzione.value=Joy3.GetDir(); }, 50);
-setInterval(function(){ joy3X.value=Joy3.GetX(); }, 50);
-setInterval(function(){ joy3Y.value=Joy3.GetY(); }, 50);
+            setInterval(function(){ joy3IinputPosX.value=Joy3.GetPosX();
+            console.log(joy3IinputPosX.value) }, 50);
+            setInterval(function(){ joy3InputPosY.value=Joy3.GetPosY(); }, 50);
+            setInterval(function(){ joy3Direzione.value=Joy3.GetDir(); }, 50);
+            setInterval(function(){ joy3X.value=Joy3.GetX(); }, 50);
+            setInterval(function(){ joy3Y.value=Joy3.GetY(); }, 50);
 		</script>
 	</body>
 </html>

@@ -114,6 +114,10 @@ body
             setInterval(function(){ joy3Y.value=Joy3.GetY(); }, 50);
 
             function send_joystick_data() {
+                if (Joy3.GetX() == 0 && Joy3.GetY() == 0) {
+                    return;
+                }
+
                 var entry = {
                     x: Joy3.GetX(),
                     y: Joy3.GetY()

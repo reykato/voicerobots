@@ -68,10 +68,11 @@ body
 }
 		</style>
 		<script src="/static/joy.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
 	</head>
 	<body>
 		<!-- Example of FIXED or ABSOLUTE position -->
-		<div id="joy3Div" style="width:200px;height:200px;margin:50px;position:fixed;top:30px;left:100px;"></div>
+		<div id="joyDiv" style="width:200px;height:200px;margin:50px;position:fixed;top:30px;left:100px;"></div>
 		<div style="position:fixed;top:325px;left:150px;">
 			Position X:<input id="PosX" type="text" /><br/>
 			Position Y:<input id="PosY" type="text" /><br/>
@@ -87,7 +88,7 @@ body
             });
 
             var joyParam = { "title": "joystick" };
-            var Joy = new JoyStick('joy3Div', joyParam);
+            var Joy = new JoyStick('joyDiv', joyParam);
 
             var input_pos_x = document.getElementById("PosX");
             var input_pos_y = document.getElementById("PosY");

@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 @app.route('/control')
 def control():
+    m = Motors(20, 21, 16, 12)
     return render_template('index.html')
 
 
@@ -22,4 +23,3 @@ def control_data():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
-    m = Motors(20, 21, 16, 12)

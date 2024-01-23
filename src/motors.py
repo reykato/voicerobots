@@ -17,6 +17,12 @@ class Motors:
         GPIO.output(self.in3,GPIO.LOW)
         GPIO.output(self.in4,GPIO.LOW)
     
+    def all_off(self):
+        GPIO.output(self.in1,GPIO.LOW)
+        GPIO.output(self.in2,GPIO.LOW)
+        GPIO.output(self.in3,GPIO.LOW)
+        GPIO.output(self.in4,GPIO.LOW)
+
     def forward_for_ms(self, time_in_ms):
         endtime = time.monotonic() + time_in_ms
         while (endtime - time.monotonic() >= 0):
@@ -24,13 +30,15 @@ class Motors:
             GPIO.output(self.in2,GPIO.LOW)
             GPIO.output(self.in3,GPIO.LOW)
             GPIO.output(self.in4,GPIO.HIGH)
+        self.all_off()
         return
     
-    def forward_for_ms(self, time_in_ms):
+    def backward_for_ms(self, time_in_ms):
         endtime = time.monotonic() + time_in_ms
         while (endtime - time.monotonic() >= 0):
             GPIO.output(self.in1,GPIO.LOW)
             GPIO.output(self.in2,GPIO.HIGH)
             GPIO.output(self.in3,GPIO.HIGH)
             GPIO.output(self.in4,GPIO.LOW)
+        self.all_off()
         return

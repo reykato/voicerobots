@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO          
 from time import sleep
-import keyboard
+from flask import Flask
 
 in1 = 20
 in2 = 21
@@ -26,10 +26,6 @@ print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
 print("\n")    
 
 while(True):
-
-    if keyboard.is_pressed("a"):
-        print("You pressed 'a'.")
-        break
 
     x=input()
     

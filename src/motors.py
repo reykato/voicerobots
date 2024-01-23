@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO          
-from time import time
+from time import time, monotonic
 
 class Motors:
     def __init__(self, in1, in2, in3, in4):

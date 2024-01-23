@@ -18,20 +18,24 @@ class Motors:
 
         GPIO.setmode(GPIO.BCM)
 
+        GPIO.setup(self.left_1,GPIO.OUT)
+        GPIO.setup(self.left_2,GPIO.OUT)
+        GPIO.setup(self.right_1,GPIO.OUT)
+        GPIO.setup(self.right_2,GPIO.OUT)
+        GPIO.setup(self.left_enable, GPIO.OUT)
+        GPIO.setup(self.right_enable, GPIO.OUT)
+
+
         # declare a PWM signal at 1kHz on l_en and r_en
         # l_pwm and r_pwm are used for setting the speed of each motor
-        self.left_pwm = GPIO.PWM(l_en, 1000)
-        self.right_pwm = GPIO.PWM(r_en, 1000)
+        self.left_pwm = GPIO.PWM(self.left_enable, 1000)
+        self.right_pwm = GPIO.PWM(self.right_enable, 1000)
 
         # start the PWM signal at 0% duty cycle
         self.left_pwm.start(0) 
         self.right_pwm.start(0)
 
-        GPIO.setup(self.left_1,GPIO.OUT)
-        GPIO.setup(self.left_2,GPIO.OUT)
-        GPIO.setup(self.right_1,GPIO.OUT)
-        GPIO.setup(self.right_2,GPIO.OUT)
-
+        
         # set all motors off
         GPIO.output(self.left_1,GPIO.LOW)
         GPIO.output(self.left_2,GPIO.LOW)

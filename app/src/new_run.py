@@ -15,6 +15,7 @@ def control():
 @socketio.on('json')
 def handle_message(json):
     print('received json: ' + str(json))
+    handle_data(json['x'], json['y'])
 
 def handle_data(x, y):
     # normalize x and y from [-100, 100] to the interval [-1, 1]

@@ -9,7 +9,9 @@ m = Motors(20, 21, 16, 12)
 def control():
     return render_template('index.html')
 
-
+def handle_data(x, y):
+    m.forward_for_ms(100)
+    
 @app.route('/control/data', methods=["POST"])
 def control_data():
     req = request.get_json()
@@ -23,5 +25,3 @@ def control_data():
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
 
-def handle_data(x, y):
-    m.forward_for_ms(100)

@@ -4,10 +4,16 @@ from flask import render_template
 app = Flask(__name__)
 
 
-@app.route('/hello/')
-
-def hello(name=None):
+@app.route('/control')
+def control():
     return render_template('index.html')
+
+
+@app.route('/control/data', methods=["POST"])
+def control_data():
+    req = request.get_json()
+
+    print(req)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

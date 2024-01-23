@@ -31,9 +31,9 @@ class Motors:
         self.left_pwm = GPIO.PWM(self.left_enable, 1000)
         self.right_pwm = GPIO.PWM(self.right_enable, 1000)
 
-        # start the PWM signal at 0% duty cycle
-        self.left_pwm.start(0) 
-        self.right_pwm.start(0)
+        # start the PWM signal at 100% duty cycle
+        self.left_pwm.start(100) 
+        self.right_pwm.start(100)
 
         
         # set all motors off

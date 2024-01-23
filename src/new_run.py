@@ -3,26 +3,23 @@ from flask import render_template, request, redirect, jsonify, make_response
 from motors import Motors
 
 app = Flask(__name__)
-m = Motors(20, 21, 16, 12)
+m = Motors(20, 21, 16, 12, 1, 7)
 
 @app.route('/control')
 def control():
     return render_template('index.html')
 
 def handle_data(x, y):
-    if int(y) > 0:
-        m.forward_for_ms(200)
-    else:
-        m.backward_for_ms(200)
+    # normalize x and y from [-100, 100] to the interval [-1, 1]
+    x = float(x) / 100.0
+    y = float(y) / 100.0
+
+    m.set_duty_cycle(x, y)
 
 @app.route('/control/data', methods=["POST"])
 def control_data():
     req = request.get_json()
-
-    print(f"x is {req['x']} and y is {req['y']}")
-
     handle_data(req['x'], req['y'])
-    
     return "Thx brah"
 
 if __name__ == '__main__':

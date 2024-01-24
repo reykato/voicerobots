@@ -25,7 +25,6 @@ class Motors:
         GPIO.setup(self.left_enable, GPIO.OUT)
         GPIO.setup(self.right_enable, GPIO.OUT)
 
-
         # declare a PWM signal at 1kHz on l_en and r_en
         # l_pwm and r_pwm are used for setting the speed of each motor
         self.left_pwm = GPIO.PWM(self.left_enable, 1000)
@@ -34,37 +33,12 @@ class Motors:
         # start the PWM signal at 100% duty cycle
         self.left_pwm.start(100) 
         self.right_pwm.start(100)
-
         
         # set all motors off
         GPIO.output(self.left_1,GPIO.LOW)
         GPIO.output(self.left_2,GPIO.LOW)
         GPIO.output(self.right_1,GPIO.LOW)
         GPIO.output(self.right_2,GPIO.LOW)
-    
-    def all_off(self):
-        self.left_pwm.setDutyCycle(0)
-        self.right_pwm.setDutyCycle(0)
-
-    def forward_for_ms(self, time_in_ms):
-        end_time = (time.monotonic()*1000) + time_in_ms
-        while (end_time - (time.monotonic()*1000) >= 0):
-            GPIO.output(self.left_1,GPIO.HIGH)
-            GPIO.output(self.left_2,GPIO.LOW)
-            GPIO.output(self.right_1,GPIO.LOW)
-            GPIO.output(self.right_2,GPIO.HIGH)
-        self.all_off()
-        return
-    
-    def backward_for_ms(self, time_in_ms):
-        end_time = (time.monotonic()*1000) + time_in_ms
-        while (end_time - (time.monotonic()*1000) >= 0):
-            GPIO.output(self.left_1,GPIO.LOW)
-            GPIO.output(self.left_2,GPIO.HIGH)
-            GPIO.output(self.right_1,GPIO.HIGH)
-            GPIO.output(self.right_2,GPIO.LOW)
-        self.all_off()
-        return
     
     def set_duty_cycle(self, x, y):
         '''Uses the x and y inputs to calculate and output the duty cycle
@@ -78,7 +52,6 @@ class Motors:
         l_duty_cycle = max(min(1.0, y - x), -1.0)
         r_duty_cycle = max(min(1.0, y + x), -1.0)
         
-
 
         # set the direction of the motors
         if r_duty_cycle < 0:                # backward

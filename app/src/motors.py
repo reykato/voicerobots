@@ -93,5 +93,5 @@ class Motors:
         # interval on [0, 1]. the sign only specifies direction
         # which is handled above
         self.left_pwm.ChangeDutyCycle(abs(l_duty_cycle*100))
-        self.rightpwm.ChangeDutyCycle(abs(r_duty_cycle*100))
+        self.right_pwm.ChangeDutyCycle(abs(r_duty_cycle*100))
             

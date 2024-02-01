@@ -4,7 +4,7 @@
 # main.py
 # import the necessary packages
 from flask import Flask, render_template, Response, request, send_from_directory
-from app.src.camera_test.camera import VideoCamera
+from camera import VideoCamera
 import os
 
 pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.

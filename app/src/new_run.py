@@ -20,7 +20,7 @@ def handle_message(json):
 def handle_data(x, y):
     '''
     Normalizes x and y from [-100, 100] to the interval [-1, 1],
-    then calls Motors.set_duty_cycle(x, y) to get the robot to move
+    then calls `Motors.set_duty_cycle(x, y)` to move the robot
 
     Parameters:
         - x (int): x position from joystick data

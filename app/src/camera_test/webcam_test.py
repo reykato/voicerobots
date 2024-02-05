@@ -1,9 +1,9 @@
 #Import necessary libraries
 from flask import Flask, render_template, Response
 import cv2
+
 #Initialize the Flask app
 app = Flask(__name__)
-
 
 def gen_frames():
     camera = cv2.VideoCapture(1)
@@ -26,4 +26,4 @@ def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")

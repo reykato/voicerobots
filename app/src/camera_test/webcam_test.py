@@ -3,7 +3,7 @@ from flask import Flask, render_template, Response
 import cv2
 #Initialize the Flask app
 app = Flask(__name__)
-camera = cv2.VideoCapture(CAP_V4L2)
+camera = cv2.VideoCapture(cv2.CAP_V4L2)
 
 def gen_frames():  
     while True:

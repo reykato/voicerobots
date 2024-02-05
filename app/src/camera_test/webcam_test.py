@@ -3,9 +3,10 @@ from flask import Flask, render_template, Response
 import cv2
 #Initialize the Flask app
 app = Flask(__name__)
-camera = cv2.VideoCapture(1)
 
-def gen_frames():  
+
+def gen_frames():
+    camera = cv2.VideoCapture(1)
     while True:
         success, frame = camera.read()  # read the camera frame
         if not success:

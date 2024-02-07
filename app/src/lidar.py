@@ -34,8 +34,7 @@ def run():
     lidar.stop()
     lidar.disconnect()
 
-if __name
-__ == '__main__':
+if __name__ == '__main__':
     run()
 
 # from rplidar import RPLidar

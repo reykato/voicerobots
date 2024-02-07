@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 '''Animates distances and measurment quality'''
 from rplidar import RPLidar
-import matplotlib.pyplot as plt
-import numpy as np
-import matplotlib.animation as animation
-import 
+# import matplotlib.pyplot as plt
+# import numpy as np
+# import matplotlib.animation as animation
 
 PORT_NAME = '/dev/ttyUSB0'
-DMAX = 4000
-IMIN = 0
-IMAX = 50
+# DMAX = 4000
+# IMIN = 0
+# IMAX = 50
 
 # def update_line(num, iterator, line):
 #     scan = next(iterator)

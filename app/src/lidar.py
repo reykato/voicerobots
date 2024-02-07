@@ -4,11 +4,9 @@ from rplidar import RPLidar
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.animation as animation
+import RPi.GPIO as GPIO
 
-PORT_NAME = '/dev/ttyUSB0'
-
-
-PORT_NAME = '/dev/ttyUSB0'
+PORT_NAME = '/dev/ttyS0'
 DMAX = 2000
 IMIN = 0
 IMAX = 50
@@ -23,7 +21,9 @@ def update_line(num, iterator, line):
 
 def run():
     lidar = RPLidar(PORT_NAME)
-
+    GPIO.setmode(GPIO.BCM)
+    motor = GPIO.PWM(8, 1000)
+    motor.start(100)
 
     # for i, scan in enumerate(lidar.iter_scans()):
     #     print('%d: Got %d measurments' % (i, len(scan)))
@@ -41,6 +41,7 @@ def run():
     ani = animation.FuncAnimation(fig, update_line, fargs=(iterator, line), interval=200)
     plt.show()
 
+    motor.ChangeDutyCycle(0)
     lidar.stop()
     lidar.disconnect()
 

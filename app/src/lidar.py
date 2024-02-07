@@ -1,45 +1,43 @@
-from pyrplidar import PyRPlidar
-import time
+#!/usr/bin/env python3
+'''Animates distances and measurment quality'''
+from rplidar import RPLidar
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.animation as animation
+import 
 
+PORT_NAME = '/dev/ttyUSB0'
 DMAX = 4000
 IMIN = 0
 IMAX = 50
 
-
-def update_line(num, iterator, line):
-    scan = next(iterator)
-    offsets = np.array([(np.radians(meas[1]), meas[2]) for meas in scan])
-    line.set_offsets(offsets)
-    intens = np.array([meas[0] for meas in scan])
-    line.set_array(intens)
-    return line,
+# def update_line(num, iterator, line):
+#     scan = next(iterator)
+#     offsets = np.array([(np.radians(meas[1]), meas[2]) for meas in scan])
+#     line.set_offsets(offsets)
+#     intens = np.array([meas[0] for meas in scan])
+#     line.set_array(intens)
+#     return line,
 
 def run():
-    lidar = PyRPlidar()
-    lidar.connect(port="/dev/ttyUSB0", baudrate=115200, timeout=3)
-    scan_generator = lidar.start_scan_express(4)
-                  
-    lidar.set_motor_pwm(500)
-    time.sleep(2)
+    lidar = RPLidar(PORT_NAME)
+    # fig = plt.figure()
+    # ax = plt.subplot(111, projection='polar')
+    # line = ax.scatter([0, 0], [0, 0], s=5, c=[IMIN, IMAX],
+    #                        cmap=plt.cm.Greys_r, lw=0)
+    # ax.set_rmax(DMAX)
+    # ax.grid(True)
 
-    fig = plt.figure()
-    ax = plt.subplot(111, projection='polar')
-    line = ax.scatter([0, 0], [0, 0], s=5, c=[IMIN, IMAX],
-                           cmap=plt.cm.Greys_r, lw=0)
-    ax.set_rmax(DMAX)
-    ax.grid(True)
+    iterator = lidar.iter_scans('express')
+    # ani = animation.FuncAnimation(fig, update_line,
+    #     fargs=(iterator, line), interval=50)
+    # plt.show()
 
-    # iterator = lidar.iter_scans()
-    ani = animation.FuncAnimation(fig, update_line,
-        fargs=(scan_generator, line), interval=50)
-    plt.show()
+    while True:
+        print(iterator)
+
     lidar.stop()
-    lidar.set_motor_pwm(0)
     lidar.disconnect()
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     run()

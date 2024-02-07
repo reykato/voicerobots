@@ -13,8 +13,8 @@ port = 5005
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 cap = cv2.VideoCapture(0)
-ret = cap.set(cv2.CAP_PROP_FRAME_WIDTH, 900)
-ret = cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 900)
+ret = cap.set(cv2.CAP_PROP_FRAME_WIDTH, 720)
+ret = cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 ret, frame = cap.read()
 
@@ -22,7 +22,7 @@ while ret:
     # compress frame
     # retval, buffer = cv2.imencode(".jpg", frame)
 
-    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 80]
+    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 90]
     retval, buffer = cv2.imencode('.jpg', frame, encode_param)
 
     if retval:

@@ -9,7 +9,7 @@ PORT_NAME = '/dev/ttyUSB0'
 
 
 PORT_NAME = '/dev/ttyUSB0'
-DMAX = 4000
+DMAX = 2000
 IMIN = 0
 IMAX = 50
 
@@ -38,8 +38,7 @@ def run():
     ax.grid(True)
 
     iterator = lidar.iter_scans()
-    ani = animation.FuncAnimation(fig, update_line,
-        fargs=(iterator, line), interval=10)
+    ani = animation.FuncAnimation(fig, update_line, fargs=(iterator, line), interval=200)
     plt.show()
 
     lidar.stop()

@@ -22,7 +22,7 @@ while ret:
     # compress frame
     # retval, buffer = cv2.imencode(".jpg", frame)
 
-    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 50]
+    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 80]
     retval, buffer = cv2.imencode('.jpg', frame, encode_param)
 
     if retval:

@@ -27,30 +27,12 @@ def run():
     ax.set_rmax(DMAX)
     ax.grid(True)
 
-    iterator = lidar.iter_scans('normal')
+    iterator = lidar.iter_scans()
     ani = animation.FuncAnimation(fig, update_line,
-        fargs=(iterator, line), interval=75)
+        fargs=(iterator, line), interval=50)
     plt.show()
     lidar.stop()
     lidar.disconnect()
 
 if __name__ == '__main__':
     run()
-
-# from rplidar import RPLidar
-# lidar = RPLidar('/dev/ttyUSB0')
-
-# info = lidar.get_info()
-# print(info)
-
-# health = lidar.get_health()
-# print(health)
-
-# for i, scan in enumerate(lidar.iter_scans()):
-#     print('%d: Got %d measurments' % (i, len(scan)))
-#     if i > 10:
-#         break
-
-# lidar.stop()
-# lidar.stop_motor()
-# lidar.disconnect()

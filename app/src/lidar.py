@@ -39,7 +39,7 @@ def run():
     ax.grid(True)
 
     iterator = lidar.iter_scans()
-    ani = animation.FuncAnimation(fig, update_line, fargs=(iterator, line), interval=40)
+    ani = animation.FuncAnimation(fig, update_line, fargs=(iterator, line), interval=40, cache_frame_data=False)
     plt.show()
 
     motor.ChangeDutyCycle(0)

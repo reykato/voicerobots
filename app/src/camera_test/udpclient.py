@@ -20,7 +20,10 @@ ret, frame = cap.read()
 
 while ret:
     # compress frame
-    retval, buffer = cv2.imencode(".jpg", frame)
+    # retval, buffer = cv2.imencode(".jpg", frame)
+
+    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 50]
+    retval, buffer = cv2.imencode('.jpg', frame, encode_param)
 
     if retval:
         # convert to byte array

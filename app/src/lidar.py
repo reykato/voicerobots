@@ -27,13 +27,14 @@ def run():
     # ax.set_rmax(DMAX)
     # ax.grid(True)
 
-    iterator = lidar.iter_scans('express')
+    iterator = lidar.iter_measurements('express')
     # ani = animation.FuncAnimation(fig, update_line,
     #     fargs=(iterator, line), interval=50)
     # plt.show()
 
     while True:
-        print(iterator)
+        for measurement in iterator:
+            print(measurement)
 
     lidar.stop()
     lidar.disconnect()

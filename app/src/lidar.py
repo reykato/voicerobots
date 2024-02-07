@@ -13,6 +13,8 @@ def run():
 
     for i, scan in enumerate(lidar.iter_scans()):
         print('%d: Got %d measurments' % (i, len(scan)))
+        for s in scan:
+            print(s)
         if i > 10:
             break
 

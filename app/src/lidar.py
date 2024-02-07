@@ -15,7 +15,7 @@ def run():
         print('%d: Got %d measurments' % (i, len(scan)))
         for s in scan:
             print(s)
-        if i > 10:
+        if i > 30:
             break
 
     lidar.stop()

@@ -35,8 +35,8 @@ def run():
     ax = plt.subplot(111, projection='polar')
     line = ax.scatter([0, 0], [0, 0], s=5, c=[IMIN, IMAX],
                            cmap=plt.cm.Greys_r, lw=0)
-    ax.set_rmax(DMAX)
-    ax.grid(True)
+    # ax.set_rmax(DMAX)
+    # ax.grid(True)
 
     iterator = lidar.iter_scans()
     ani = animation.FuncAnimation(fig, update_line, fargs=(iterator, line), interval=40, cache_frame_data=False)

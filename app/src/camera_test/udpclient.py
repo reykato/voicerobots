@@ -7,8 +7,8 @@ import pickle
 import sys
 
 max_length = 65000
-host = sys.argv[1]
-port = 5000
+host = "104.236.9.181"
+port = 5005
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 

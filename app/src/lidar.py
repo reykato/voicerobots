@@ -27,7 +27,7 @@ def run():
     # ax.set_rmax(DMAX)
     # ax.grid(True)
 
-    iterator = lidar.iter_measurements('express')
+    iterator = lidar.iter_measurments('express')
     # ani = animation.FuncAnimation(fig, update_line,
     #     fargs=(iterator, line), interval=50)
     # plt.show()

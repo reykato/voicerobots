@@ -13,8 +13,8 @@ port = 5005
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 cap = cv2.VideoCapture(0)
-ret = cap.set(cv2.CAP_PROP_FRAME_WIDTH, 720)
-ret = cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+ret = cap.set(cv2.CAP_PROP_FRAME_WIDTH, 240)
+ret = cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
 
 ret, frame = cap.read()
 

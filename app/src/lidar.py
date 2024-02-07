@@ -22,6 +22,7 @@ def update_line(num, iterator, line):
 def run():
     lidar = RPLidar(PORT_NAME)
     GPIO.setmode(GPIO.BCM)
+    GPIO.setup(8, GPIO.OUT)
     motor = GPIO.PWM(8, 1000)
     motor.start(100)
 

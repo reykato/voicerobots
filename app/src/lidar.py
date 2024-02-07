@@ -27,9 +27,9 @@ def run():
     ax.set_rmax(DMAX)
     ax.grid(True)
 
-    iterator = lidar.iter_scans('force')
+    iterator = lidar.iter_scans('normal')
     ani = animation.FuncAnimation(fig, update_line,
-        fargs=(iterator, line), interval=50)
+        fargs=(iterator, line), interval=25)
     plt.show()
     lidar.stop()
     lidar.disconnect()

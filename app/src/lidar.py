@@ -8,20 +8,6 @@ DMAX = 4000
 IMIN = 0
 IMAX = 50
 
-def simple_express_scan():
-
-    
-    
-    
-    
-    for count, scan in enumerate(scan_generator()):
-        print(count, scan)
-        if count == 20: break
-
-    lidar.stop()
-
-    
-    lidar.disconnect()
 
 def update_line(num, iterator, line):
     scan = next(iterator)

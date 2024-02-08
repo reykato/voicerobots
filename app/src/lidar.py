@@ -19,7 +19,7 @@ def update_line(num, iterator, line):
     line.set_array(intens)
     return line,
 
-def run():
+def main():
     lidar = RPLidar(PORT_NAME)
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(8, GPIO.OUT)
@@ -47,4 +47,4 @@ def run():
     lidar.disconnect()
 
 if __name__ == '__main__':
-    run()
+    main()

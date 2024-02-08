@@ -1,0 +1,1 @@
+Note: We do not have a GUI mockup, instead refer to the voicerobots/models folder for 3D models of our robot.

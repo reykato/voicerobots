@@ -1,13 +1,17 @@
 from videostream import VideoStream
+import time
 
 HOST_IP = "104.236.9.181"
 VIDEO_HOST_PORT = 5005
 CAMERA_ADDRESS = 0
 
-vs = VideoStream(HOST_IP, VIDEO_HOST_PORT, CAMERA_ADDRESS)
 
 def main():
-    vs.handle_video_stream()
+    vs = VideoStream(HOST_IP, VIDEO_HOST_PORT, 10, CAMERA_ADDRESS)
+
+    vs.start()
+    input("Stream started. Press ENTER to stop.")
+    vs.stop()
 
 if __name__ == '__main__':
     main()

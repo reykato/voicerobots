@@ -2,36 +2,33 @@ import pickle
 import math
 import socket
 import time
+import threading
 import cv2
+from stream import Stream
 
-class VideoStream():
+class VideoStream(Stream):
     MAX_PACKET_SIZE = 65000
 
-    def __init__(host, port, fps, camera_address=0):
-        HOST = host
-        PORT = port
-        FPS = fps
-        CAMERA_ADDRESS = camera_address
-        capturing = True
-    
-    def handle_video_stream(self):
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    def __init__(self, host:str, port:int, fps:int, camera_address=0):
+        super.__init__()
+        self.FPS = fps
+        self.CAMERA_ADDRESS = camera_address
 
-        cap = cv2.VideoCapture(self.CAMERA_ADDRESS)
-        ret = cap.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
-        ret = cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 540)
+        self.socket = None
+        self.capture = cv2.VideoCapture(self.CAMERA_ADDRESS)
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
+        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 540)
+        self.prev_time = 0
 
-
-        prev_time = time.time()
-
-        while self.capturing:
+    def _handle_stream(self):
+        while not self.stop_event.is_set():
             # get frame from camera
-            time_elapsed = time.time() - prev_time
-            ret, frame = cap.read()
+            time_elapsed = time.time() - self.prev_time
+            ret, frame = self.capture.read()
 
             # if enough time has passed between the last frame and now
             if time_elapsed > 1./self.FPS:
-                prev_time = time.time()
+                self.prev_time = time.time()
 
                 # if the VideoCapture.read() function says the read was successful, continue and send frame
                 if ret:
@@ -51,7 +48,7 @@ class VideoStream():
 
                     # send the number of packs to be expected
                     print("Number of packs:", num_of_packets)
-                    sock.sendto(pickle.dumps(frame_info), (self.HOST_IP, self.VIDEO_HOST_PORT))
+                    self.socket.sendto(pickle.dumps(frame_info), (self.HOST, self.PORT))
                     
                     left = 0
                     right = self.MAX_PACKET_SIZE
@@ -66,5 +63,13 @@ class VideoStream():
                         right += self.MAX_PACKET_SIZE
 
                         # send the frames accordingly
-                        sock.sendto(data, (self.HOST_IP, self.VIDEO_HOST_PORT))
-            ret, frame = cap.read()
+                        self.socket.sendto(data, (self.HOST, self.PORT))
+            ret, frame = self.capture.read()
+
+    def _before_starting(self):
+        self.prev_time = time.time()
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+    def _after_stopping(self):
+        self.socket.close()
+        

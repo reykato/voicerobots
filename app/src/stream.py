@@ -3,13 +3,13 @@ import threading
 class Stream():
     def __init__(self, host: str, port: int):
         """
-        Class for handling UDP streams.
+        Class for streaming UDP data.
 
         Parameters:
         - host (str): Address of the receiving machine.
         (e.g. "70.224.3.88")
         - port (int): Port which the receiving machine is listening to.
-        (e.g. 5000)
+        (e.g. 5100)
         """
 
         self.HOST = host
@@ -41,6 +41,7 @@ class Stream():
         """
 
         if not self.loop_thread.is_alive():
+            self._before_starting()
             self.stop_event.clear()
             self.loop_thread = threading.Thread(target=self._handle_stream)
             self.loop_thread.start()

@@ -10,7 +10,7 @@ class VideoStream(Stream):
     MAX_PACKET_SIZE = 65000
 
     def __init__(self, host:str, port:int, fps:int, camera_address=0):
-        super.__init__()
+        super().__init__(host, port)
         self.FPS = fps
         self.CAMERA_ADDRESS = camera_address
 

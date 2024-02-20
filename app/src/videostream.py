@@ -37,6 +37,7 @@ class VideoStream(Stream):
             if time_elapsed > 1./self.fps:
                 self.prev_time = time.time()
                 self.actual_fps += 1
+                print(f"actual 1./self.fps: {1./self.fps}, actual time.time(): {time.time()}")
 
                 # if the VideoCapture.read() function says the read was successful, continue and send frame
                 if ret:

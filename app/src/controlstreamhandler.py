@@ -32,6 +32,7 @@ class ControlStreamHandler(StreamHandler):
         self.socket.bind((self.host, self.port))
         self.socket.listen(4)
         self.client_socket, _ = self.socket.accept()
+        print("Connected!")
     
     def _after_stopping(self):
         self.socket.close()

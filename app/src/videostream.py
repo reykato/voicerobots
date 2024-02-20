@@ -57,7 +57,7 @@ class VideoStream(Stream):
 
                     # send the number of packs to be expected
                     # print("Number of packs:", num_of_packets)
-                    self.socket.sendto(pickle.dumps(frame_info), (self.HOST, self.PORT))
+                    self.socket.sendall(pickle.dumps(frame_info))
 
                     left = 0
                     right = self.MAX_PACKET_SIZE
@@ -69,13 +69,14 @@ class VideoStream(Stream):
                         right += self.MAX_PACKET_SIZE
 
                         # send the frames accordingly
-                        self.socket.sendto(data, (self.HOST, self.PORT))
+                        self.socket.sendall(data)
 
     def _before_starting(self):
         self.actual_fps = 0
         self.time_elapsed_second = 0
         self.prev_time = time.time()
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.socket.bind((self.host, self.port))
 
     def _after_stopping(self):
         self.socket.close()

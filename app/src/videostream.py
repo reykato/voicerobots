@@ -73,7 +73,6 @@ class VideoStream(Stream):
 
                         # send the frames accordingly
                         self.socket.sendto(data, (self.HOST, self.PORT))
-            ret, frame = self.capture.read()
 
     def _before_starting(self):
         self.actual_fps = 0

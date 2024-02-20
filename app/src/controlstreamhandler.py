@@ -25,8 +25,8 @@ class ControlStreamHandler(StreamHandler):
                 self.motors.set_duty_cycle(decoded_data[0], decoded_data[1])
 
     def _before_starting(self):
+        socket.timeout(0.005) # socket will stop waiting for packets after 5ms
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.timeout(0.005) # socket will stop waiting for packets after 5ms
         self.socket.bind((self.host, self.port))
         self.socket.listen()
     

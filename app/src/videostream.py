@@ -3,9 +3,9 @@ import math
 import socket
 import time
 import cv2
-from stream import Stream
+from udpstream import UDPStream
 
-class VideoStream(Stream):
+class VideoStream(UDPStream):
     MAX_PACKET_SIZE = 65000
 
     def __init__(self, host:str, port:int, fps:int, camera_address=0):
@@ -59,7 +59,7 @@ class VideoStream(Stream):
                     # send the number of packs to be expected
                     # print("Number of packs:", num_of_packets)
                     self.socket.sendto(pickle.dumps(frame_info), (self.HOST, self.PORT))
-                    
+
                     left = 0
                     right = self.MAX_PACKET_SIZE
 
@@ -83,4 +83,3 @@ class VideoStream(Stream):
 
     def _after_stopping(self):
         self.socket.close()
-        

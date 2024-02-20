@@ -1,6 +1,5 @@
 from streamhandler import StreamHandler
 import socket
-import errno
 from motors import Motors
 
 class ControlStreamHandler(StreamHandler):

@@ -32,7 +32,7 @@ class VideoStream(Stream):
                 # if the VideoCapture.read() function says the read was successful, continue and send frame
                 if ret:
                     # compress frame to jpg with 80% quality
-                    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 85]
+                    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 78]
                     _, buffer = cv2.imencode('.jpg', frame, encode_param)
 
                     # if retval:

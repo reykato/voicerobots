@@ -23,7 +23,13 @@ class VideoStream(Stream):
         while not self.stop_event.is_set():
             # get frame from camera
             time_elapsed = time.time() - self.prev_time
+            time_elapsed_second = time.time()
             ret, frame = self.capture.read()
+            actual_fps = 0
+
+            if time.time() - time_elapsed_second > 1:
+                print(f"Calculated FPS: {actual_fps}")
+                actual_fps = 0
 
             # if enough time has passed between the last frame and now
             if time_elapsed > 1./self.fps:
@@ -31,6 +37,7 @@ class VideoStream(Stream):
 
                 # if the VideoCapture.read() function says the read was successful, continue and send frame
                 if ret:
+                    actual_fps += 1
                     # compress frame to jpg with 80% quality
                     encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 78]
                     _, buffer = cv2.imencode('.jpg', frame, encode_param)
@@ -46,7 +53,7 @@ class VideoStream(Stream):
                     frame_info = {"packs":num_of_packets}
 
                     # send the number of packs to be expected
-                    print("Number of packs:", num_of_packets)
+                    # print("Number of packs:", num_of_packets)
                     self.socket.sendto(pickle.dumps(frame_info), (self.HOST, self.PORT))
                     
                     left = 0

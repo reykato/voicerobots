@@ -6,7 +6,7 @@ CAMERA_ADDRESS = 0
 
 
 def main():
-    vs = VideoStream(HOST_IP, VIDEO_HOST_PORT, 10, CAMERA_ADDRESS)
+    vs = VideoStream(HOST_IP, VIDEO_HOST_PORT, 20, CAMERA_ADDRESS)
     vs.start()
     input("Stream started. Press ENTER to stop.")
     vs.stop()

@@ -18,18 +18,20 @@ class VideoStream(Stream):
         self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
         self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 540)
         self.prev_time = 0
+        self.actual_fps = 0
+        self.time_elapsed_second = 0
 
     def _handle_stream(self):
         while not self.stop_event.is_set():
             # get frame from camera
             time_elapsed = time.time() - self.prev_time
-            time_elapsed_second = time.time()
             ret, frame = self.capture.read()
-            actual_fps = 0
 
-            if time.time() - time_elapsed_second > 1:
-                print(f"Calculated FPS: {actual_fps}")
-                actual_fps = 0
+
+            if time.time() - self.time_elapsed_second > 1:
+                print(f"Calculated FPS: {self.actual_fps}")
+                self.actual_fps = 0
+                self.time_elapsed_second = time.time()
 
             # if enough time has passed between the last frame and now
             if time_elapsed > 1./self.fps:
@@ -37,7 +39,7 @@ class VideoStream(Stream):
 
                 # if the VideoCapture.read() function says the read was successful, continue and send frame
                 if ret:
-                    actual_fps += 1
+                    self.actual_fps += 1
                     # compress frame to jpg with 80% quality
                     encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 78]
                     _, buffer = cv2.imencode('.jpg', frame, encode_param)
@@ -73,6 +75,8 @@ class VideoStream(Stream):
             ret, frame = self.capture.read()
 
     def _before_starting(self):
+        self.actual_fps = 0
+        self.time_elapsed_second = 0
         self.prev_time = time.time()
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 

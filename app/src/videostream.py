@@ -26,8 +26,6 @@ class VideoStream(Stream):
             # get frame from camera
             time_elapsed = time.time() - self.prev_time
             ret, frame = self.capture.read()
-            print(f"actual 1./self.fps: {1./self.fps}, actual time_elapsed: {time_elapsed}")
-
 
             if time.time() - self.time_elapsed_second > 1:
                 print(f"Calculated FPS: {self.actual_fps}")

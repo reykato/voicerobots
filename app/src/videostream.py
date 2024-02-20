@@ -39,7 +39,6 @@ class VideoStream(Stream):
 
                 ret, frame = self.capture.read()
 
-
                 # if the VideoCapture.read() function says the read was successful, continue and send frame
                 if ret:
                     # compress frame to jpg with 80% quality
@@ -64,9 +63,6 @@ class VideoStream(Stream):
                     right = self.MAX_PACKET_SIZE
 
                     for _ in range(num_of_packets):
-                        # print("left:", left)
-                        # print("right:", right)
-
                         # truncate data to send
                         data = buffer[left:right]
                         left = right

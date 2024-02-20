@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd /home/pacifistbd/VCR
-source /home/pacifistbd/VCR/.venv/bin/activate
-python3 /home/pacifistbd/VCR/app/src/run.py
+cd /home/pacifistbd/voicerobots
+source /home/pacifistbd/voicerobots/.venv/bin/activate
+python3 /home/pacifistbd/voicerobots/app/src/run.py

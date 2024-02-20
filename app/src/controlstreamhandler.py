@@ -18,7 +18,7 @@ class ControlStreamHandler(StreamHandler):
                     self.stop()
 
             if not received_data == None:
-                decoded_data = struct.unpack('3d', received_data)
+                decoded_data = struct.unpack('2d', received_data)
                 print(f"Received: {decoded_data}")
 
                 # Echo back the received data

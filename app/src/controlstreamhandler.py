@@ -17,7 +17,7 @@ class ControlStreamHandler(StreamHandler):
                     print(err = e.args[0])
                     self.stop()
 
-            if not received_data == None:
+            if not received_data is None:
                 decoded_data = struct.unpack('2d', received_data)
                 print(f"Received: {decoded_data}")
 

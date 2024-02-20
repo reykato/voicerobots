@@ -23,7 +23,7 @@ class ControlStreamHandler(StreamHandler):
                 print(f"Received: {decoded_data}")
 
                 # Echo back the received data
-                # self.socket.sendall(decoded_data)
+                self.socket.sendto(decoded_data, (self.host, self.port))
                 self.motors.set_duty_cycle(decoded_data[0], decoded_data[1])
 
     def _before_starting(self):

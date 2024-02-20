@@ -2,7 +2,6 @@ import pickle
 import math
 import socket
 import time
-import threading
 import cv2
 from stream import Stream
 
@@ -11,11 +10,11 @@ class VideoStream(Stream):
 
     def __init__(self, host:str, port:int, fps:int, camera_address=0):
         super().__init__(host, port)
-        self.FPS = fps
-        self.CAMERA_ADDRESS = camera_address
+        self.fps = fps
+        self.camera_address = camera_address
 
         self.socket = None
-        self.capture = cv2.VideoCapture(self.CAMERA_ADDRESS)
+        self.capture = cv2.VideoCapture(self.camera_address)
         self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
         self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 540)
         self.prev_time = 0
@@ -27,14 +26,14 @@ class VideoStream(Stream):
             ret, frame = self.capture.read()
 
             # if enough time has passed between the last frame and now
-            if time_elapsed > 1./self.FPS:
+            if time_elapsed > 1./self.fps:
                 self.prev_time = time.time()
 
                 # if the VideoCapture.read() function says the read was successful, continue and send frame
                 if ret:
                     # compress frame to jpg with 80% quality
-                    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 80]
-                    retval, buffer = cv2.imencode('.jpg', frame, encode_param)
+                    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 75]
+                    _, buffer = cv2.imencode('.jpg', frame, encode_param)
 
                     # if retval:
                     buffer = buffer.tobytes() # convert to byte array
@@ -53,7 +52,7 @@ class VideoStream(Stream):
                     left = 0
                     right = self.MAX_PACKET_SIZE
 
-                    for i in range(num_of_packets):
+                    for _ in range(num_of_packets):
                         # print("left:", left)
                         # print("right:", right)
 

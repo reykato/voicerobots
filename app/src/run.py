@@ -1,5 +1,4 @@
 from videostream import VideoStream
-import time
 
 HOST_IP = "104.236.9.181"
 VIDEO_HOST_PORT = 5005

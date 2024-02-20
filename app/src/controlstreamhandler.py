@@ -30,7 +30,7 @@ class ControlStreamHandler(StreamHandler):
         socket.timeout(0.005) # socket will stop waiting for packets after 5ms
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.bind((self.host, self.port))
-        self.socket.listen(4)
+        self.socket.listen()
         self.client_socket, _ = self.socket.accept()
         print("Connected!")
     

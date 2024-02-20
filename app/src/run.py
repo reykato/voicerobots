@@ -7,7 +7,7 @@ CONTROL_HOST_PORT = 5006
 CAMERA_ADDRESS = 0
 
 vs = VideoStream(HOST_IP, VIDEO_HOST_PORT, 15, CAMERA_ADDRESS)
-csh = ControlStreamHandler('', CONTROL_HOST_PORT)
+csh = ControlStreamHandler("localhost", CONTROL_HOST_PORT)
 def main():
     vs.start()
     csh.start()

@@ -3,9 +3,9 @@ import math
 import socket
 import time
 import cv2
-from udpstream import UDPStream
+from stream import Stream
 
-class VideoStream(UDPStream):
+class VideoStream(Stream):
     MAX_PACKET_SIZE = 65000
 
     def __init__(self, host:str, port:int, fps:int, camera_address=0):

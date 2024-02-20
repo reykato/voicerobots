@@ -1,6 +1,6 @@
 import threading
 
-class UDPStream():
+class Stream():
     def __init__(self, host: str, port: int):
         """
         Class for streaming UDP data.

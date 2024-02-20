@@ -36,10 +36,10 @@ class VideoStream(Stream):
             # if enough time has passed between the last frame and now
             if time_elapsed > 1./self.fps:
                 self.prev_time = time.time()
+                self.actual_fps += 1
 
                 # if the VideoCapture.read() function says the read was successful, continue and send frame
                 if ret:
-                    self.actual_fps += 1
                     # compress frame to jpg with 80% quality
                     encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 78]
                     _, buffer = cv2.imencode('.jpg', frame, encode_param)

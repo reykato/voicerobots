@@ -15,8 +15,8 @@ class VideoStream(Stream):
 
         self.socket = None
         self.capture = cv2.VideoCapture(self.camera_address)
-        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
-        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 540)
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
         self.prev_time = 0
         self.actual_fps = 0
         self.time_elapsed_second = 0

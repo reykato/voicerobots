@@ -1,6 +1,6 @@
 from streamhandler import StreamHandler
 import socket
-import struct
+import numpy as np
 from motors import Motors
 
 class ControlStreamHandler(StreamHandler):
@@ -19,7 +19,9 @@ class ControlStreamHandler(StreamHandler):
                     self.stop()
 
             if not received_data is None:
-                decoded_data = struct.unpack('2d', received_data)
+                # decoded_data = struct.unpack('2d', received_data)
+                decoded_data = np.frombuffer(received_data, dtype=np.float32)
+
                 print(f"Received: {decoded_data}")
 
                 # Echo back the received data

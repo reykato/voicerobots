@@ -2,6 +2,10 @@ import RPi.GPIO as GPIO
 import time
 
 class Motors:
+    SPEED_LEFT = 50
+    SPEED_RIGHT = 50
+
+
     def __init__(self, left_1, left_2, right_1, right_2, left_enable, right_enable):
         '''
         The Motors object abstracts GPIO initialization and PWM
@@ -44,8 +48,8 @@ class Motors:
         self.right_pwm = GPIO.PWM(self.right_enable, 1000)
 
         # start the PWM signal at 100% duty cycle
-        self.left_pwm.start(100)
-        self.right_pwm.start(100)
+        self.left_pwm.start(self.SPEED_LEFT)
+        self.right_pwm.start(self.SPEED_RIGHT)
         
         # set all motors off
         GPIO.output(self.left_1,GPIO.LOW)

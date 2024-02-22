@@ -2,8 +2,8 @@ import RPi.GPIO as GPIO
 import time
 
 class Motors:
-    SPEED_LEFT = 0.5
-    SPEED_RIGHT = 0.5
+    SPEED_LEFT = 0.75
+    SPEED_RIGHT = 0.75
 
 
     def __init__(self, left_1, left_2, right_1, right_2, left_enable, right_enable):

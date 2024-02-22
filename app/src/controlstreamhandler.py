@@ -1,6 +1,7 @@
 from streamhandler import StreamHandler
 import socket
 import numpy as np
+import time
 from motors import Motors
 
 class ControlStreamHandler(StreamHandler):
@@ -15,28 +16,25 @@ class ControlStreamHandler(StreamHandler):
             except socket.error as e:
                 received_data = None
                 if not e.args[0] == 'timed out':
-                    print(err = e.args[0])
-                    self.stop()
+                    print(f"Error: '{e.args[0]}', reconnecting...")
+                    self._connect_to_server()
 
             if not received_data is None:
-                # decoded_data = struct.unpack('2d', received_data)
                 decoded_data = np.frombuffer(received_data, dtype=np.float32)
-
-                print(f"Received: {decoded_data}")
-
-                # Echo back the received data
-                # self.socket.sendto(decoded_data, (self.host, self.port))
                 self.motors.set_duty_cycle(decoded_data[0], decoded_data[1])
 
-    def _before_starting(self):
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    def _connect_to_server(self):
         while True:
             try:
                 self.socket.connect((self.host, self.port))
                 break  # Exit the loop if connection succeeds
             except socket.error as e:
-                print(f"Failed to connect: {e}, retrying...")
-                # time.sleep(1)  # Wait for 1 second before trying again
+                print(f"Failed to connect, retrying in 1 second...")
+                time.sleep(1)  # Wait for 1 second before trying again
+
+    def _before_starting(self):
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self._connect_to_server()
     
     def _after_stopping(self):
         self.socket.close()

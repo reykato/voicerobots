@@ -1,6 +1,7 @@
 from streamhandler import StreamHandler
 import socket
 import numpy as np
+import time
 from motors import Motors
 
 class ControlStreamHandler(StreamHandler):
@@ -19,13 +20,9 @@ class ControlStreamHandler(StreamHandler):
                     self.stop()
 
             if not received_data is None:
-                # decoded_data = struct.unpack('2d', received_data)
                 decoded_data = np.frombuffer(received_data, dtype=np.float32)
 
                 print(f"Received: {decoded_data}")
-
-                # Echo back the received data
-                # self.socket.sendto(decoded_data, (self.host, self.port))
                 self.motors.set_duty_cycle(decoded_data[0], decoded_data[1])
 
     def _before_starting(self):
@@ -36,7 +33,7 @@ class ControlStreamHandler(StreamHandler):
                 break  # Exit the loop if connection succeeds
             except socket.error as e:
                 print(f"Failed to connect: {e}, retrying...")
-                # time.sleep(1)  # Wait for 1 second before trying again
+                time.sleep(1)  # Wait for 1 second before trying again
     
     def _after_stopping(self):
         self.socket.close()

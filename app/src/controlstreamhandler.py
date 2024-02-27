@@ -13,15 +13,16 @@ class ControlStreamHandler(StreamHandler):
         while not self.stop_event.is_set():
             try:
                 received_data = self.socket.recv(1024)
+                if not received_data is None:
+                    decoded_data = np.frombuffer(received_data, dtype=np.float32)
+                    self.motors.set_duty_cycle(decoded_data[0], decoded_data[1])
             except socket.error as e:
                 received_data = None
                 if not e.args[0] == 'timed out':
                     print(f"Error: '{e.args[0]}', reconnecting...")
                     self._connect_to_server()
 
-            if not received_data is None:
-                decoded_data = np.frombuffer(received_data, dtype=np.float32)
-                self.motors.set_duty_cycle(decoded_data[0], decoded_data[1])
+            
 
     def _connect_to_server(self):
         while True:

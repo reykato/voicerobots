@@ -2,61 +2,47 @@ import RPi.GPIO as GPIO
 import time
 
 class Motors:
-    SPEED_LEFT = 0.75
-    SPEED_RIGHT = 0.75
+    MAX_FREQUENCY = 1000
 
-
-    def __init__(self, left_1, left_2, right_1, right_2, left_enable, right_enable):
+    def __init__(self, left_dir, left_step, right_dir, right_step):
         '''
         The Motors object abstracts GPIO initialization and PWM
         signal management to provide functions for moving the robot.
 
         Parameters:
-            - left_1 (int): pin which connects to 'in1' on the motor driver
-            - left_2 (int): pin which connects to 'in2' on the motor driver
-            - right_1 (int): pin which connects to 'in3' on the motor driver
-            - right_2 (int): pin which connects to 'in4' on the motor driver
-            - left_enable (int): pin which connects to 'enA' on the motor driver
-            - right_enable (int): pin which connects to 'enB' on the motor driver
+            - left_pins ([int]): pins which connect to left motor [in1, in2, in3, in4]
+            - right_pins ([int]): pins which connect to right motor [in1, in2, in3, in4]
         '''
 
-        # l1 and l2 are the two connections to the left motor
-        self.left_1 = left_1
-        self.left_2 = left_2
-
-        # l1 and l2 are the two connections to the right motor
-        self.right_1 = right_1
-        self.right_2 = right_2
-
-        # l_en is the 'enable' connection to the left motor
-        # r_en is the 'enable' connection to the right motor
-        self.left_enable = left_enable
-        self.right_enable = right_enable
+        self.left_dir = left_dir
+        self.left_step = left_step
+        self.right_dir = right_dir
+        self.right_step = right_step
 
         # setup motor control pins as outputs
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.left_1,GPIO.OUT)
-        GPIO.setup(self.left_2,GPIO.OUT)
-        GPIO.setup(self.right_1,GPIO.OUT)
-        GPIO.setup(self.right_2,GPIO.OUT)
-        GPIO.setup(self.left_enable, GPIO.OUT)
-        GPIO.setup(self.right_enable, GPIO.OUT)
-
-        # declare a PWM signal at 1kHz on l_en and r_en
-        # l_pwm and r_pwm are used for setting the speed of each motor
-        self.left_pwm = GPIO.PWM(self.left_enable, 1000)
-        self.right_pwm = GPIO.PWM(self.right_enable, 1000)
-
-        # start the PWM signal at 100% duty cycle
-        self.left_pwm.start(100)
-        self.right_pwm.start(100)
+        GPIO.output(left_dir, GPIO.LOW)
+        GPIO.output(right_dir, GPIO.LOW)
         
-        # set all motors off
-        GPIO.output(self.left_1,GPIO.LOW)
-        GPIO.output(self.left_2,GPIO.LOW)
-        GPIO.output(self.right_1,GPIO.LOW)
-        GPIO.output(self.right_2,GPIO.LOW)
-    
+        self.left_pwm = GPIO.PWM(left_step, 0)
+        self.right_pwm = GPIO.PWM(right_step, 0) 
+
+        self.left_pwm.start(50)
+        self.right_pwm.start(50)
+
+
+    def set_stepper_speed(self, x, y):
+        # Calculate motor speeds 
+        left_speed = (y + x) / 2  
+        right_speed = (y - x) / 2
+
+        # Ensure motor speeds are within valid range [-1, 1]
+        left_speed = max(min(left_speed, 1), -1)  
+        right_speed = max(min(right_speed, 1), -1)
+
+        self.left_pwm.ChangeFrequency(self.MAX_FREQUENCY*left_speed)
+        self.left_pwm.ChangeFrequency(self.MAX_FREQUENCY*right_speed)
+
     def set_duty_cycle(self, x, y):
         '''
         Uses the x and y inputs to calculate and output the duty cycle

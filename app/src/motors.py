@@ -30,11 +30,11 @@ class Motors:
         GPIO.output(left_dir, GPIO.LOW)
         GPIO.output(right_dir, GPIO.LOW)
 
-        self.left_pwm = GPIO.PWM(left_step, 0)
-        self.right_pwm = GPIO.PWM(right_step, 0)
+        self.left_pwm = GPIO.PWM(left_step, 100)
+        self.right_pwm = GPIO.PWM(right_step, 100)
 
-        self.left_pwm.start(50)
-        self.right_pwm.start(50)
+        self.left_pwm.start(0)
+        self.right_pwm.start(0)
 
 
     def set_stepper_speed(self, x, y):
@@ -65,6 +65,16 @@ class Motors:
             GPIO.output(self.right_dir, GPIO.LOW)
         else:
             GPIO.output(self.right_dir, GPIO.HIGH)
+
+        if left_speed == 0:
+            self.left_pwm.SetDutyCycle(0)
+        else:
+            self.left_pwm.SetDutyCycle(50)
+
+        if right_speed == 0:
+            self.right_pwm.SetDutyCycle(0)
+        else:
+            self.right_pwm.SetDutyCycle(50)
 
 
         self.left_pwm.ChangeFrequency(self.MAX_FREQUENCY * left_speed)

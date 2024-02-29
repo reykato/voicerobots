@@ -72,15 +72,20 @@ class Motors:
 
         if left_speed == 0:
             self.left_pwm.ChangeDutyCycle(0)
+            print("Setting duty cycle 0")
         else:
             self.left_pwm.ChangeDutyCycle(50)
+            print("Setting duty cycle 50")
 
         if right_speed == 0:
             self.right_pwm.ChangeDutyCycle(0)
+            print("Setting duty cycle 0")
         else:
             self.right_pwm.ChangeDutyCycle(50)
+            print("Setting duty cycle 50")
 
-        print(f"Setting frequency: {self.MAX_FREQUENCY * left_speed}, {self.MAX_FREQUENCY * right_speed}.")
-        self.left_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * left_speed, 100))
-        self.right_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * right_speed, 100))
+        print(f"Setting frequency: {max(self.MAX_FREQUENCY * abs(left_speed), 100)}, {max(self.MAX_FREQUENCY * abs(right_speed), 100)}.")
+        
+        self.left_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(left_speed), 100))
+        self.right_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(right_speed), 100))
             

@@ -1,21 +1,19 @@
 import RPi.GPIO as GPIO          
-import time
 
 class Motors:
+    '''
+    Abstracts GPIO initialization and PWM
+    signal management to provide functions for moving the robot.
+
+    Parameters:
+        - left_dir (int): direction pin of left motor
+        - left_step (int): step pin of left motor
+        - right_dir (int): direction pin of right motor
+        - right_step (int): step pin of right motor
+    '''
     MAX_FREQUENCY = 1000
 
     def __init__(self, left_dir, left_step, right_dir, right_step):
-        '''
-        The Motors object abstracts GPIO initialization and PWM
-        signal management to provide functions for moving the robot.
-
-        Parameters:
-            - left_dir (int): direction pin of left motor
-            - left_step (int): step pin of left motor
-            - right_dir (int): direction pin of right motor
-            - right_step (int): step pin of right motor
-        '''
-
         self.left_dir = left_dir
         self.left_step = left_step
         self.right_dir = right_dir
@@ -31,7 +29,7 @@ class Motors:
 
         GPIO.output(left_dir, GPIO.LOW)
         GPIO.output(right_dir, GPIO.LOW)
-        
+
         self.left_pwm = GPIO.PWM(left_step, 0)
         self.right_pwm = GPIO.PWM(right_step, 0)
 

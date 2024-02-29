@@ -1,6 +1,15 @@
 import threading
 
 class StreamHandler():
+    """
+    Class for receiving data via IP.
+
+    Parameters:
+    - host (str): Address of the receiving machine.
+    (e.g. "70.224.3.88")
+    - port (int): Port which the receiving machine is listening to.
+    (e.g. 5100)
+    """
     def __init__(self, host: str, port: int):
         """
         Class for handling IP streams.
@@ -22,17 +31,17 @@ class StreamHandler():
         """
         Processes packets into data and calls functions for additional processing.
         """
-        pass
+
     def _after_stopping(self):
         """
         Code to execute after stopping the loop `_handle_stream`.
         """
-        pass
+
     def _before_starting(self):
         """
         Code to execute before starting the loop `_handle_stream`.
-        """   
-        pass
+        """
+
     def start(self):
         """
         Executes code in `_before_starting`, then opens thread on

@@ -67,14 +67,14 @@ class Motors:
             GPIO.output(self.right_dir, GPIO.HIGH)
 
         if left_speed == 0:
-            self.left_pwm.SetDutyCycle(0)
+            self.left_pwm.ChangeDutyCycle(0)
         else:
-            self.left_pwm.SetDutyCycle(50)
+            self.left_pwm.ChangeDutyCycle(50)
 
         if right_speed == 0:
-            self.right_pwm.SetDutyCycle(0)
+            self.right_pwm.ChangeDutyCycle(0)
         else:
-            self.right_pwm.SetDutyCycle(50)
+            self.right_pwm.ChangeDutyCycle(50)
 
 
         self.left_pwm.ChangeFrequency(self.MAX_FREQUENCY * left_speed)

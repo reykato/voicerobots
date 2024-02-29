@@ -77,6 +77,6 @@ class Motors:
             self.right_pwm.ChangeDutyCycle(50)
 
 
-        self.left_pwm.ChangeFrequency(self.MAX_FREQUENCY * left_speed)
-        self.left_pwm.ChangeFrequency(self.MAX_FREQUENCY * right_speed)
+        self.left_pwm.ChangeFrequency(min(self.MAX_FREQUENCY * left_speed, 100))
+        self.left_pwm.ChangeFrequency(min(self.MAX_FREQUENCY * right_speed, 100))
             

@@ -11,7 +11,7 @@ class Motors:
         - right_dir (int): direction pin of right motor
         - right_step (int): step pin of right motor
     '''
-    MAX_FREQUENCY = 1000
+    MAX_FREQUENCY = 500
 
     def __init__(self, left_dir, left_step, right_dir, right_step):
         self.left_dir = left_dir
@@ -80,7 +80,7 @@ class Motors:
         else:
             self.right_pwm.ChangeDutyCycle(50)
 
-        print(f"Setting speed: {left_speed}, {right_speed}.")
+        print(f"Setting frequency: {self.MAX_FREQUENCY * left_speed}, {self.MAX_FREQUENCY * right_speed}.")
         self.left_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * left_speed, 100))
         self.right_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * right_speed, 100))
             

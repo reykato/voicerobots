@@ -6,3 +6,4 @@ while True:
     m.set_stepper_speed(0,1)
     time.sleep(1)
     m.set_stepper_speed(0,-1)
+    time.sleep(1)

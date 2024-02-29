@@ -6,7 +6,7 @@ from streamhandler import StreamHandler
 
 class ControlStreamHandler(StreamHandler):
     socket = None
-    motors = Motors(20, 21, 16, 12) # initialize motors with GPIO pin numbers
+    motors = Motors(21, 20, 12, 16) # initialize motors with GPIO pin numbers
 
     def _handle_stream(self):
         while not self.stop_event.is_set():

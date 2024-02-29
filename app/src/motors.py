@@ -80,7 +80,7 @@ class Motors:
         else:
             self.right_pwm.ChangeDutyCycle(50)
 
-
+        print(f"Setting speed: {left_speed}, {right_speed}.")
         self.left_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * left_speed, 100))
         self.right_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * right_speed, 100))
             

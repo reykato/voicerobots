@@ -33,8 +33,12 @@ class Motors:
         self.left_pwm = GPIO.PWM(left_step, 100)
         self.right_pwm = GPIO.PWM(right_step, 100)
 
-        self.left_pwm.start(0)
-        self.right_pwm.start(0)
+        self.left_pwm.start(100)
+        self.left_pwm.ChangeDutyCycle(0)
+        self.right_pwm.start(100)
+        self.right_pwm.ChangeDutyCycle(0)
+
+
 
 
     def set_stepper_speed(self, x, y):

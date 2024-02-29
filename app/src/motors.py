@@ -78,5 +78,5 @@ class Motors:
 
 
         self.left_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * left_speed, 100))
-        self.left_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * right_speed, 100))
+        self.right_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * right_speed, 100))
             

@@ -1,6 +1,6 @@
 from motors import Motors
 import time
-m = Motors(21, 20, 12, 16)
+m = Motors(20, 21, 12, 16)
 
 while True:
     m.set_stepper_speed(1,1)

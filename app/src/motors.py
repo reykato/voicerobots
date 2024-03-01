@@ -66,9 +66,9 @@ class Motors:
             GPIO.output(self.left_dir, GPIO.HIGH)
 
         if right_speed < 0:
-            GPIO.output(self.right_dir, GPIO.LOW)
-        else:
             GPIO.output(self.right_dir, GPIO.HIGH)
+        else:
+            GPIO.output(self.right_dir, GPIO.LOW)
 
         if left_speed == 0:
             self.left_pwm.ChangeDutyCycle(0)

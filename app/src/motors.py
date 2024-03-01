@@ -65,16 +65,6 @@ class Motors:
         left_speed = max(min(left_speed, 1), -1)
         right_speed = max(min(right_speed, 1), -1)
 
-        if left_speed < 0:
-            GPIO.output(self.left_dir, GPIO.LOW)
-        else:
-            GPIO.output(self.left_dir, GPIO.HIGH)
-
-        if right_speed < 0:
-            GPIO.output(self.right_dir, GPIO.HIGH)
-        else:
-            GPIO.output(self.right_dir, GPIO.LOW)
-
         if left_speed == 0:
             GPIO.output(self.left_en, GPIO.HIGH)
             print("disabling left motor")
@@ -89,7 +79,17 @@ class Motors:
             GPIO.output(self.right_en, GPIO.LOW)
             print("enabling right motor")
 
-        # print(f"Setting frequency: {max(self.MAX_FREQUENCY * abs(left_speed), 100)}, {max(self.MAX_FREQUENCY * abs(right_speed), 100)}.")
+        if left_speed < 0:
+            GPIO.output(self.left_dir, GPIO.LOW)
+        else:
+            GPIO.output(self.left_dir, GPIO.HIGH)
+
+        if right_speed < 0:
+            GPIO.output(self.right_dir, GPIO.HIGH)
+        else:
+            GPIO.output(self.right_dir, GPIO.LOW)
+
+        print(f"Setting frequency: {max(self.MAX_FREQUENCY * abs(left_speed), 100)}, {max(self.MAX_FREQUENCY * abs(right_speed), 100)}.")
 
         self.left_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(left_speed), 100))
         self.right_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(right_speed), 100))

@@ -87,8 +87,8 @@ class Motors:
         else:
             GPIO.output(self.right_dir, GPIO.LOW)
 
-        print(f"Setting frequency: {max(self.MAX_FREQUENCY * abs(left_speed), 100)}, {max(self.MAX_FREQUENCY * abs(right_speed), 100)}.")
+        print(f"Setting frequency: {max(self.MAX_FREQUENCY * abs(left_speed), 100) * 2}, {max(self.MAX_FREQUENCY * abs(right_speed), 100) * 2}.")
 
-        self.left_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(left_speed), 100))
-        self.right_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(right_speed), 100))
+        self.left_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(left_speed), 100) * 2)
+        self.right_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(right_speed), 100) * 2)
             

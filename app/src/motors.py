@@ -13,7 +13,7 @@ class Motors:
         - left_en (int): enable pin of left motor, active low
         - right_en (int): enable pin of right motor, active low
     '''
-    MAX_FREQUENCY = 3000
+    MAX_FREQUENCY = 2000
 
     def __init__(self, left_dir, left_step, right_dir, right_step, left_en, right_en):
         self.left_dir = left_dir

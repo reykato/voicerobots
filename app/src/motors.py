@@ -13,7 +13,7 @@ class Motors:
         - left_en (int): enable pin of left motor, active low
         - right_en (int): enable pin of right motor, active low
     '''
-    MAX_FREQUENCY = 1400
+    MAX_FREQUENCY = 3500
 
     def __init__(self, left_dir, left_step, right_dir, right_step, left_en, right_en):
         self.left_dir = left_dir
@@ -87,8 +87,8 @@ class Motors:
         else:
             GPIO.output(self.right_dir, GPIO.LOW)
 
-        print(f"Setting frequency: {max(self.MAX_FREQUENCY * abs(left_speed), 100) * 2}, {max(self.MAX_FREQUENCY * abs(right_speed), 100) * 2}.")
+        print(f"Setting frequency: {float(max(self.MAX_FREQUENCY * abs(left_speed), 100))}, {float(max(self.MAX_FREQUENCY * abs(right_speed), 100))}.")
 
-        self.left_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(left_speed), 100) * 2)
-        self.right_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(right_speed), 100) * 2)
+        self.left_pwm.ChangeFrequency(float(max(self.MAX_FREQUENCY * abs(left_speed), 100)))
+        self.right_pwm.ChangeFrequency(float(max(self.MAX_FREQUENCY * abs(right_speed), 100)))
             

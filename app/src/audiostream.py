@@ -11,7 +11,7 @@ class AudioStream(Stream):
 
         self.socket = None
         self.audio = pyaudio.PyAudio()
-        self.stream = self.audio.open(format=pyaudio.paInt16, channels=1, rate=44100, input=True, frames_per_buffer=1024)
+        self.stream = self.audio.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=1024)
 
     def _handle_stream(self):
         while not self.stop_event.is_set():

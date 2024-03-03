@@ -26,6 +26,7 @@ class ControlStreamHandler(StreamHandler):
     def _connect_to_server(self):
         while True:
             try:
+                print("Trying to connect to server...")
                 self.socket.connect((self.host, self.port))
                 break  # Exit the loop if connection succeeds
             except socket.error:

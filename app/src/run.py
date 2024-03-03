@@ -9,7 +9,7 @@ AUDIO_HOST_PORT = 5007
 CAMERA_ADDRESS = 0
 vs = VideoStream(HOST_IP, VIDEO_HOST_PORT, 15, CAMERA_ADDRESS)
 csh = ControlStreamHandler(HOST_IP, CONTROL_HOST_PORT)
-aus = AudioStream(HOST_IP, AUDIO_HOST_PORT)
+# aus = AudioStream(HOST_IP, AUDIO_HOST_PORT)
 def main():
     vs.start()
     csh.start()

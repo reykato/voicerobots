@@ -13,11 +13,11 @@ aus = AudioStream(HOST_IP, AUDIO_HOST_PORT)
 def main():
     vs.start()
     csh.start()
-    aus.start()
+    # aus.start()
     input("Stream started. Press ENTER to stop.")
     csh.stop()
     vs.stop()
-    aus.stop()
+    # aus.stop()
 
 if __name__ == '__main__':
     main()

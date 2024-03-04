@@ -11,7 +11,7 @@ class LidarStream(Stream):
         super().__init__(host, port)
 
     def _handle_stream(self):
-        _, quality, angle, distance = next(self.lidar)
+        _, quality, angle, distance = next(self.iterator)
         data = (quality, angle, distance)
         np_data = np.array(data, dtype=np.float32)
         byte_buffer = np_data.tobytes()

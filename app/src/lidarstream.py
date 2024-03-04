@@ -12,11 +12,13 @@ class LidarStream(Stream):
         super().__init__(host, port)
 
     def _handle_stream(self):
-        _, quality, angle, distance = next(self.iterator)
-        data = (quality, angle, distance)
-        np_data = np.array(data, dtype=np.float32)
-        byte_buffer = np_data.tobytes()
-        self.socket.sendto(byte_buffer, (self.host, self.port))
+        while not self.stop_event.is_set():
+            _, quality, angle, distance = next(self.iterator)
+            data = (quality, angle, distance)
+            print(f"sending {data}...")
+            np_data = np.array(data, dtype=np.float32)
+            byte_buffer = np_data.tobytes()
+            self.socket.sendto(byte_buffer, (self.host, self.port))
 
     def _before_starting(self):
         self.actual_fps = 0

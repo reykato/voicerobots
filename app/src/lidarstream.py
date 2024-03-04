@@ -6,6 +6,7 @@ import numpy as np
 
 class LidarStream(Stream):
     PORT_NAME = '/dev/ttyS0'
+    MOTOR_PIN = 18
 
     def __init__(self, host, port):
         super().__init__(host, port)
@@ -26,8 +27,8 @@ class LidarStream(Stream):
         self.lidar = RPLidar(self.PORT_NAME)
         self.iterator = self.lidar.iter_measurments(max_buf_meas=5)
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(8, GPIO.OUT)
-        self.motor = GPIO.PWM(8, 1000)
+        GPIO.setup(MOTOR_PIN, GPIO.OUT)
+        self.motor = GPIO.PWM(MOTOR_PIN, 1000)
         self.motor.start(100)
 
     def _after_stopping(self):

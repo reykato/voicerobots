@@ -25,7 +25,7 @@ class LidarStream(Stream):
         self._connect_to_server()
 
         self.lidar = RPLidar(self.PORT_NAME)
-        self.iterator = self.lidar.iter_measurments(max_buf_meas=5)
+        self.iterator = self.lidar.iter_measures(max_buf_meas=5)
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.MOTOR_PIN, GPIO.OUT)
         self.motor = GPIO.PWM(self.MOTOR_PIN, 1000)

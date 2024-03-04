@@ -13,8 +13,10 @@ class LidarStream(Stream):
 
     def _handle_stream(self):
         while not self.stop_event.is_set():
-            _, quality, angle, distance = next(self.iterator)
-            data = (quality, angle, distance)
+            scan = next(self.iterator)
+            data = []
+            for point in scan:
+                data += scan
             print(f"sending {data}...")
             np_data = np.array(data, dtype=np.float32)
             byte_buffer = np_data.tobytes()
@@ -27,7 +29,7 @@ class LidarStream(Stream):
         self._connect_to_server()
 
         self.lidar = RPLidar(self.PORT_NAME)
-        self.iterator = self.lidar.iter_measures(max_buf_meas=5)
+        self.iterator = self.lidar.iter_scans()
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.MOTOR_PIN, GPIO.OUT)
         self.motor = GPIO.PWM(self.MOTOR_PIN, 1000)

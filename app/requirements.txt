@@ -7,6 +7,6 @@ numpy==1.26.1
 openai-whisper==20231117
 opencv-python==4.9.0.80
 pyttsx3==2.90
-RPi.GPIO==0.7.1
 rplidar==0.9.2
 SpeechRecognition==3.10.1
+RPi.GPIO==0.7.1

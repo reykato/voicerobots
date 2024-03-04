@@ -1,4 +1,6 @@
 import threading
+import time
+import socket
 
 class Stream():
     """
@@ -13,6 +15,7 @@ class Stream():
     def __init__(self, host: str, port: int):
         self.host = host
         self.port = port
+        self.socket = None
 
         self.stop_event = threading.Event()
         self.loop_thread = threading.Thread(target=self._handle_stream)
@@ -23,6 +26,17 @@ class Stream():
         the receiving machine. Should contain a loop.
         """
         pass
+
+    def _connect_to_server(self):
+        while True:
+            try:
+                print("Trying to connect to server...")
+                self.socket.connect((self.host, self.port))
+                break  # Exit the loop if connection succeeds
+            except socket.error:
+                print("Failed to connect, retrying in 1 second...")
+                time.sleep(1)  # Wait for 1 second before trying again
+
     def _after_stopping(self):
         """
         Code to execute after stopping the loop `_handle_stream`.

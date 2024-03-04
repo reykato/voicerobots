@@ -13,7 +13,6 @@ class VideoStream(Stream):
         self.fps = fps
         self.camera_address = camera_address
 
-        self.socket = None
         self.capture = cv2.VideoCapture(self.camera_address)
         self.capture.set(cv2.CAP_PROP_BUFFERSIZE, 3)
         self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
@@ -25,7 +24,6 @@ class VideoStream(Stream):
 
     def _handle_stream(self):
         while not self.stop_event.is_set():
-            # get frame from camera
             time_elapsed = time.time() - self.prev_time
             # ret, frame = self.capture.read()
 
@@ -58,7 +56,6 @@ class VideoStream(Stream):
                     frame_info = {"packs":num_of_packets}
 
                     # send the number of packs to be expected
-                    # print("Number of packs:", num_of_packets)
                     self.socket.sendto(pickle.dumps(frame_info), (self.host, self.port))
 
                     left = 0

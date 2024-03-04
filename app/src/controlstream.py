@@ -2,10 +2,9 @@ import socket
 import time
 import numpy as np
 from motors import Motors
-from streamhandler import StreamHandler
+from stream import Stream
 
-class ControlStreamHandler(StreamHandler):
-    socket = None
+class ControlStream(Stream):
     motors = Motors(20, 21, 12, 16, 7, 1) # initialize motors with GPIO pin numbers
 
     def _handle_stream(self):

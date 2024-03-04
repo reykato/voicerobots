@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 '''Animates distances and measurment quality'''
 from rplidar import RPLidar
 import matplotlib.pyplot as plt
@@ -43,6 +42,7 @@ def main():
     plt.show()
 
     motor.ChangeDutyCycle(0)
+    
     lidar.stop()
     lidar.disconnect()
 

@@ -17,6 +17,7 @@ class LidarStream(Stream):
             except:
                 self._after_stopping()
                 self._before_starting()
+            
             # print(f"sending data...")
             np_data = np.array(scan, dtype=np.float32)
             byte_buffer = np_data.tobytes()
@@ -39,4 +40,5 @@ class LidarStream(Stream):
 
     def _after_stopping(self):
         self.lidar.stop()
+        GPIO.cleanup()
         self.socket.close()

@@ -27,7 +27,7 @@ class LidarStream(Stream):
 
 
     def _before_starting(self):
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # self._connect_to_server()
         self.lidar = RPLidar(self.PORT_NAME)
         

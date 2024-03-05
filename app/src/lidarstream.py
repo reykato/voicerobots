@@ -3,6 +3,7 @@ from stream import Stream
 import RPi.GPIO as GPIO
 from rplidar import RPLidar
 import numpy as np
+import time
 
 class LidarStream(Stream):
     PORT_NAME = '/dev/ttyS0'
@@ -19,6 +20,7 @@ class LidarStream(Stream):
             except:
                 self.iterator = self.lidar.iter_scans()
             print(f"sending data...")
+            time.sleep(0.1)
             np_data = np.array(scan, dtype=np.float32)
             byte_buffer = np_data.tobytes()
             self.socket.sendto(byte_buffer, (self.host, self.port))

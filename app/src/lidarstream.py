@@ -13,7 +13,11 @@ class LidarStream(Stream):
 
     def _handle_stream(self):
         while not self.stop_event.is_set():
-            scan = next(self.iterator)
+            scan = None
+            try:
+                scan = next(self.iterator)
+            except:
+                scan = (0, 0, 0)
             print(f"sending {scan}...")
             np_data = np.array(scan, dtype=np.float32)
             byte_buffer = np_data.tobytes()

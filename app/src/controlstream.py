@@ -13,9 +13,12 @@ class ControlStream(Stream):
                 received_data = self.socket.recv(1024)
                 if not received_data is None:
                     decoded_data = np.frombuffer(received_data, dtype=np.float32)
-                    x = max(min(decoded_data[0], 100), -100)
-                    y = max(min(decoded_data[1], 100), -100)
-                    self.motors.set_stepper_speed(x, y)
+                    if len(decoded_data) != 0:
+                        x = max(min(decoded_data[0], 100), -100)
+                        y = max(min(decoded_data[1], 100), -100)
+                        self.motors.set_stepper_speed(x, y)
+                    else:
+                        self._connect_to_server()
             except socket.error as e:
                 received_data = None
                 if not e.args[0] == 'timed out':

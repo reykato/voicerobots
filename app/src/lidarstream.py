@@ -17,8 +17,8 @@ class LidarStream(Stream):
             try:
                 scan = next(self.iterator)
             except:
-                scan = (0, 0, 0)
-            print(f"sending {scan}...")
+                self.iterator = self.lidar.iter_scans()
+            print(f"sending data...")
             np_data = np.array(scan, dtype=np.float32)
             byte_buffer = np_data.tobytes()
             self.socket.sendto(byte_buffer, (self.host, self.port))

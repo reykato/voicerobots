@@ -28,4 +28,10 @@ def main():
     ls.stop()
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except:
+        csh.stop()
+        vs.stop()
+        vs.stop()
+        ls.stop()

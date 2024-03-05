@@ -86,3 +86,5 @@ class Motors:
         self.left_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(left_speed), 100))
         self.right_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(right_speed), 100))
             
+    def cleanup(self):
+        GPIO.cleanup()

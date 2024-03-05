@@ -25,19 +25,10 @@ class ControlStream(Stream):
                     print(f"Error: '{e.args[0]}', reconnecting...")
                     self._connect_to_server()
 
-    def _connect_to_server(self):
-        while True:
-            try:
-                print("Trying to connect to server...")
-                self.socket.connect((self.host, self.port))
-                break  # Exit the loop if connection succeeds
-            except socket.error:
-                print("Failed to connect, retrying in 1 second...")
-                time.sleep(1)  # Wait for 1 second before trying again
-
     def _before_starting(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._connect_to_server()
 
     def _after_stopping(self):
+        self.motors.cleanup()
         self.socket.close()

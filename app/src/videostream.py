@@ -13,7 +13,10 @@ class VideoStream(Stream):
         self.fps = fps
         self.camera_address = camera_address
 
-        self.capture = cv2.VideoCapture(self.camera_address)
+        try:
+            self.capture = cv2.VideoCapture(self.camera_address)
+        except:
+            self.capture = cv2.VideoCapture(1)
         self.capture.set(cv2.CAP_PROP_BUFFERSIZE, 3)
         self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
         self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 450)

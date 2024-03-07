@@ -23,7 +23,7 @@ class LidarStream(Stream):
             byte_buffer = np_data.tobytes()
 
             self.socket.sendto(byte_buffer, (self.host, self.port))
-            time.sleep(0.1)
+            # time.sleep(0.1)
 
 
     def _before_starting(self):

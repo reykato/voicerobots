@@ -10,4 +10,4 @@ Gabriel Marx
 Dr. Truong Tran<br>
 Dr. Sayed Reza
 
-This repository is the main repository for this project. However, the server-side code is held in another repository available here: https://github.com/reykato/voicerobots-server
+This repository is the main repository for this project. The server-side code is held in another repository available here: https://github.com/reykato/voicerobots-server

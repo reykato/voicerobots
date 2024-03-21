@@ -34,8 +34,8 @@ class Stream():
                 self.socket.connect((self.host, self.port))
                 break  # Exit the loop if connection succeeds
             except socket.error:
-                print("Failed to connect, retrying in 1 second...")
-                time.sleep(1)  # Wait for 1 second before trying again
+                print("Failed to connect, retrying...")
+                time.sleep(2)  # Wait for 1 second before trying again
             except KeyboardInterrupt:
                 print("Connection attempt cancelled.")
                 break

@@ -28,7 +28,7 @@ class VideoStream(Stream):
     def _handle_stream(self):
         while not self.stop_event.is_set():
             time_elapsed = time.time() - self.prev_time
-            # ret, frame = self.capture.read()
+            ret, frame = self.capture.read()
 
             if time.time() - self.time_elapsed_second > 1:
                 print(f"Calculated FPS: {self.actual_fps}")

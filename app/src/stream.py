@@ -36,6 +36,9 @@ class Stream():
             except socket.error:
                 print("Failed to connect, retrying in 1 second...")
                 time.sleep(1)  # Wait for 1 second before trying again
+            except KeyboardInterrupt:
+                print("Connection attempt cancelled.")
+                break
 
     def _after_stopping(self):
         """

@@ -24,6 +24,7 @@ class AudioStream(Stream):
     def _before_starting(self):
         self.prev_time = time.time()
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.socket.settimeout(0.2)
 
     def _after_stopping(self):
         self.stream.stop_stream()

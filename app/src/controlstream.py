@@ -42,6 +42,7 @@ class ControlStream(Stream):
     def _before_starting(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._connect_to_server()
+        self.socket.settimeout(0.2)
 
     def _after_stopping(self):
         self.socket.close()

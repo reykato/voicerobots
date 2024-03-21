@@ -78,6 +78,8 @@ class VideoStream(Stream):
         self.time_elapsed_second = 0
         self.prev_time = time.time()
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.socket.settimeout(0.2)
+
 
     def _after_stopping(self):
         self.socket.close()

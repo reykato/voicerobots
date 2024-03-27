@@ -14,8 +14,8 @@ class ControlStream(Stream):
                 if not received_data is None:
                     decoded_data = np.frombuffer(received_data, dtype=np.float32)
                     if len(decoded_data) != 0:
-                        x = max(min(decoded_data[0], 100), -100)
-                        y = max(min(decoded_data[1], 100), -100)
+                        x = decoded_data[0]
+                        y = decoded_data[1]
                         self.motors.set_stepper_speed(x, y)
                     else:
                         self._connect_to_server()

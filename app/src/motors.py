@@ -83,6 +83,7 @@ class Motors:
         else:
             GPIO.output(self.right_dir, GPIO.LOW)
 
+        print(f"Left speed: {left_speed}, Right speed: {right_speed}")
         self.left_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(left_speed), 100))
         self.right_pwm.ChangeFrequency(max(self.MAX_FREQUENCY * abs(right_speed), 100))
             

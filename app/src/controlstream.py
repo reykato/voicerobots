@@ -14,6 +14,7 @@ class ControlStream(Stream):
                 if not received_data is None:
                     decoded_data = np.frombuffer(received_data, dtype=np.float32)
                     if len(decoded_data) != 0:
+                        print(f"Received control: {decoded_data}")
                         x = decoded_data[0]
                         y = decoded_data[1]
                         self.motors.set_stepper_speed(x, y)

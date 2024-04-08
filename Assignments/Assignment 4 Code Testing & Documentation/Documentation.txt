@@ -1,0 +1,1 @@
+The documentation for voicerobots and voicerobots-server are located in voicerobots/sphinx and voicerobots-server/sphinx.

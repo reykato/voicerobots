@@ -22,6 +22,7 @@ class AudioStream(Stream):
     def _handle_stream(self):
         while not self.stop_event.is_set():
             if not self.buffer.empty():
+                    print("collected audio")
                     audiodata = b''.join(self.buffer.queue)
                     self.buffer.queue.clear()
 

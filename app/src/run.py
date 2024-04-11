@@ -13,18 +13,18 @@ CAMERA_ADDRESS = 0
 
 vs = VideoStream(HOST_IP, VIDEO_HOST_PORT, 10, CAMERA_ADDRESS)
 csh = ControlStream(HOST_IP, CONTROL_HOST_PORT)
-# aus = AudioStream(HOST_IP, AUDIO_HOST_PORT)
+aus = AudioStream(HOST_IP, AUDIO_HOST_PORT)
 ls = LidarStream(HOST_IP, LIDAR_HOST_PORT)
 
 def main():
     vs.start()
     csh.start()
-    # aus.start()
+    aus.start()
     ls.start()
     input("Stream started. Press ENTER to stop.")
     csh.stop()
     vs.stop()
-    # aus.stop()
+    aus.stop()
     ls.stop()
 
 if __name__ == '__main__':

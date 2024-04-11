@@ -38,7 +38,7 @@ class LidarStream(Stream):
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.MOTOR_PIN, GPIO.OUT)
         self.motor = GPIO.PWM(self.MOTOR_PIN, 1000)
-        self.motor.start(100)
+        #self.motor.start(100)
 
     def _after_stopping(self):
         self.lidar.stop()

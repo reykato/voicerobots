@@ -15,7 +15,7 @@ class AudioStream(Stream):
         self.socket = None
         self.audio = sr.Recognizer()
         # self.audio.energy_threshold = 1000
-        self.audio.dynamic_energy_threshold = False
+        # self.audio.dynamic_energy_threshold = False
         self.source = sr.Microphone(sample_rate=16000)
         self.buffer = Queue()
 

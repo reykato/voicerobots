@@ -23,10 +23,9 @@ class Motors:
         self.left_en = left_en
         self.right_en = right_en
 
-        self.cleanup()
-
         # setup motor control pins as outputs
         GPIO.setmode(GPIO.BCM)
+        self.cleanup()
 
         GPIO.setup(left_dir, GPIO.OUT)
         GPIO.setup(left_step, GPIO.OUT)

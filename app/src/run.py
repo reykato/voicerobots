@@ -3,8 +3,8 @@ from controlstream import ControlStream
 from audiostream import AudioStream
 from lidarstream import LidarStream
 
-# HOST_IP = "159.65.162.35"
-HOST_IP = "10.20.9.254"
+HOST_IP = "159.65.162.35"
+# HOST_IP = "10.20.9.254"
 VIDEO_HOST_PORT = 5005
 CONTROL_HOST_PORT = 5006
 AUDIO_HOST_PORT = 5007

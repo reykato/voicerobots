@@ -20,19 +20,19 @@ ls = LidarStream(HOST_IP, LIDAR_HOST_PORT)
 def main():
     vs.start()
     csh.start()
-    aus.start()
+    # aus.start()
     ls.start()
     input("Stream started. Press ENTER to stop.")
     csh.stop()
     vs.stop()
-    aus.stop()
+    # aus.stop()
     ls.stop()
 
 if __name__ == '__main__':
     try:
         main()
-    except:
+    except KeyboardInterrupt:
         csh.stop()
-        vs.stop()
+        # aus.stop()
         vs.stop()
         ls.stop()
